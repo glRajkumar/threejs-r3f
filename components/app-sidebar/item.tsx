@@ -1,11 +1,11 @@
 
 export const items = [
   {
-    title: "Example 1",
-    href: "example1",
+    title: "Home",
+    href: "",
   },
   {
-    title: "Example 2",
-    href: "example2",
+    title: "Example 1",
+    href: "example1",
   },
 ]

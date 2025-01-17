@@ -209,48 +209,48 @@ yarn add @react-three/fiber three
 ### Setting Up a Basic Scene
 1. Create a new React project:
 
-    ```bash
-    npx create-react-app my-threejs-app
-    cd my-threejs-app
-    ```
+```bash
+npx create-react-app my-threejs-app
+cd my-threejs-app
+```
 
 2. Install the required packages:
 
-    ```bash
-    npm install @react-three/fiber three
-    ```
+```bash
+npm install @react-three/fiber three
+```
 
 3. Replace the content of `src/App.js` with:
 
-    ```jsx
-    import { Canvas } from '@react-three/fiber';
+```jsx
+import { Canvas } from '@react-three/fiber';
 
-    function Box() {
-      return (
-        <mesh>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color="orange" />
-        </mesh>
-      );
-    }
+function Box() {
+  return (
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color="orange" />
+    </mesh>
+  );
+}
 
-    function App() {
-      return (
-        <Canvas>
-          <ambientLight />
-          <Box />
-        </Canvas>
-      );
-    }
+function App() {
+  return (
+    <Canvas>
+      <ambientLight />
+      <Box />
+    </Canvas>
+  );
+}
 
-    export default App;
-    ```
+export default App;
+```
 
 4. Start the development server:
 
-    ```bash
-    npm start
-    ```
+```bash
+npm start
+```
 
 ## Resources
 - [Three.js Documentation](https://threejs.org/docs/)

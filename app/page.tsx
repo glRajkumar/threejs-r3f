@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 import { getContents } from "@/utils/file-helper";
 import MarkdownBlocker from "@/components/custom-ui/markdown-blocker";
