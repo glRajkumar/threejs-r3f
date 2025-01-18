@@ -1,0 +1,506 @@
+# Three.js Geometries
+
+Three.js provides a variety of built-in geometries to create different shapes and structures in 3D space. Below is a comprehensive list of geometries, along with examples of how to use them in both Three.js and React-Three-Fiber.
+
+---
+
+## 1. BoxGeometry
+Creates a rectangular box (cuboid) shape.
+
+### Three.js Example
+```javascript
+const geometry = new THREE.BoxGeometry(1, 1, 1); // width, height, depth
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Box() {
+  return (
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial color="green" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Box />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 2. SphereGeometry
+Creates a sphere.
+
+### Three.js Example
+```javascript
+const geometry = new THREE.SphereGeometry(1, 32, 32); // radius, widthSegments, heightSegments
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Sphere() {
+  return (
+    <mesh>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshBasicMaterial color="red" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Sphere />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 3. PlaneGeometry
+Creates a flat 2D plane.
+
+### Three.js Example
+```javascript
+const geometry = new THREE.PlaneGeometry(5, 5); // width, height
+const material = new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide });
+const plane = new THREE.Mesh(geometry, material);
+scene.add(plane);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Plane() {
+  return (
+    <mesh>
+      <planeGeometry args={[5, 5]} />
+      <meshBasicMaterial color="blue" side={THREE.DoubleSide} />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Plane />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 4. CircleGeometry
+Creates a circle.
+
+### Three.js Example
+```javascript
+const geometry = new THREE.CircleGeometry(1, 32); // radius, segments
+const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+const circle = new THREE.Mesh(geometry, material);
+scene.add(circle);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Circle() {
+  return (
+    <mesh>
+      <circleGeometry args={[1, 32]} />
+      <meshBasicMaterial color="yellow" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Circle />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 5. ConeGeometry
+Creates a cone or pyramid shape.
+
+### Three.js Example
+```javascript
+const geometry = new THREE.ConeGeometry(1, 2, 32); // radius, height, radialSegments
+const material = new THREE.MeshBasicMaterial({ color: 0xff00ff });
+const cone = new THREE.Mesh(geometry, material);
+scene.add(cone);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Cone() {
+  return (
+    <mesh>
+      <coneGeometry args={[1, 2, 32]} />
+      <meshBasicMaterial color="magenta" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Cone />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 6. CylinderGeometry
+Creates a cylinder.
+
+### Three.js Example
+```javascript
+const geometry = new THREE.CylinderGeometry(1, 1, 2, 32); // topRadius, bottomRadius, height, radialSegments
+const material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+const cylinder = new THREE.Mesh(geometry, material);
+scene.add(cylinder);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Cylinder() {
+  return (
+    <mesh>
+      <cylinderGeometry args={[1, 1, 2, 32]} />
+      <meshBasicMaterial color="cyan" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Cylinder />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 7. TorusGeometry
+Creates a torus (ring or donut shape).
+
+### Three.js Example
+```javascript
+const geometry = new THREE.TorusGeometry(1, 0.4, 16, 100); // radius, tube, radialSegments, tubularSegments
+const material = new THREE.MeshBasicMaterial({ color: 0xff8800 });
+const torus = new THREE.Mesh(geometry, material);
+scene.add(torus);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Torus() {
+  return (
+    <mesh>
+      <torusGeometry args={[1, 0.4, 16, 100]} />
+      <meshBasicMaterial color="orange" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Torus />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 8. TorusKnotGeometry
+Creates a torus knot.
+
+### Three.js Example
+```javascript
+const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16); // radius, tube, tubularSegments, radialSegments
+const material = new THREE.MeshBasicMaterial({ color: 0xaa00ff });
+const torusKnot = new THREE.Mesh(geometry, material);
+scene.add(torusKnot);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function TorusKnot() {
+  return (
+    <mesh>
+      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+      <meshBasicMaterial color="purple" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <TorusKnot />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 9. DodecahedronGeometry
+Creates a dodecahedron (12-faced polyhedron).
+
+### Three.js Example
+```javascript
+const geometry = new THREE.DodecahedronGeometry(1); // radius
+const material = new THREE.MeshBasicMaterial({ color: 0x00aa00 });
+const dodecahedron = new THREE.Mesh(geometry, material);
+scene.add(dodecahedron);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Dodecahedron() {
+  return (
+    <mesh>
+      <dodecahedronGeometry args={[1]} />
+      <meshBasicMaterial color="green" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Dodecahedron />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 10. IcosahedronGeometry
+Creates an icosahedron (20-faced polyhedron).
+
+### Three.js Example
+```javascript
+const geometry = new THREE.IcosahedronGeometry(1); // radius
+const material = new THREE.MeshBasicMaterial({ color: 0x0000aa });
+const icosahedron = new THREE.Mesh(geometry, material);
+scene.add(icosahedron);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Icosahedron() {
+  return (
+    <mesh>
+      <icosahedronGeometry args={[1]} />
+      <meshBasicMaterial color="blue" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Icosahedron />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 11. OctahedronGeometry
+Creates an octahedron (8-faced polyhedron).
+
+### Three.js Example
+```javascript
+const geometry = new THREE.OctahedronGeometry(1); // radius
+const material = new THREE.MeshBasicMaterial({ color: 0xaa0000 });
+const octahedron = new THREE.Mesh(geometry, material);
+scene.add(octahedron);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Octahedron() {
+  return (
+    <mesh>
+      <octahedronGeometry args={[1]} />
+      <meshBasicMaterial color="red" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Octahedron />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 12. TetrahedronGeometry
+Creates a tetrahedron (4-faced polyhedron).
+
+### Three.js Example
+```javascript
+const geometry = new THREE.TetrahedronGeometry(1); // radius
+const material = new THREE.MeshBasicMaterial({ color: 0xaaaa00 });
+const tetrahedron = new THREE.Mesh(geometry, material);
+scene.add(tetrahedron);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Tetrahedron() {
+  return (
+    <mesh>
+      <tetrahedronGeometry args={[1]} />
+      <meshBasicMaterial color="yellow" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Tetrahedron />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 13. RingGeometry
+Creates a ring.
+
+### Three.js Example
+```javascript
+const geometry = new THREE.RingGeometry(0.5, 1, 32); // innerRadius, outerRadius, thetaSegments
+const material = new THREE.MeshBasicMaterial({ color: 0x888888, side: THREE.DoubleSide });
+const ring = new THREE.Mesh(geometry, material);
+scene.add(ring);
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+
+function Ring() {
+  return (
+    <mesh>
+      <ringGeometry args={[0.5, 1, 32]} />
+      <meshBasicMaterial color="gray" side={THREE.DoubleSide} />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Ring />
+    </Canvas>
+  );
+}
+```
+
+---
+
+## 14. TextGeometry
+Creates 3D text.
+
+### Three.js Example
+```javascript
+const loader = new THREE.FontLoader();
+loader.load('path/to/font.json', function (font) {
+  const geometry = new THREE.TextGeometry('Hello, Three.js!', {
+    font: font,
+    size: 1,
+    height: 0.2,
+  });
+  const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  const text = new THREE.Mesh(geometry, material);
+  scene.add(text);
+});
+```
+
+### React-Three-Fiber Example
+```jsx
+import { Canvas } from '@react-three/fiber';
+import { useLoader } from '@react-three/fiber';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
+
+function Text() {
+  const font = useLoader(FontLoader, 'path/to/font.json');
+  return (
+    <mesh>
+      <textGeometry args={["Hello, Three.js!", { font, size: 1, height: 0.2 }]} />
+      <meshBasicMaterial color="white" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <Text />
+    </Canvas>
+  );
+}
+```
+
+---

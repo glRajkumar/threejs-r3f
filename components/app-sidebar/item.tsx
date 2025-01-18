@@ -1,11 +1,17 @@
 
 export const items = [
   {
-    title: "Home",
+    title: "Getting started",
     href: "",
   },
   {
-    title: "Example 1",
-    href: "example1",
+    title: "Basics",
+    href: "basics",
+    children: [
+      {
+        title: "Geometry",
+        href: "geometries",
+      },
+    ]
   },
 ]
