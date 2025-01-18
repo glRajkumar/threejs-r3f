@@ -1,3 +1,5 @@
+import { Box, Sphere, Plane, Circle, Cone, Cylinder, Torus, TorusKnot, Dodecahedron, Icosahedron, Octahedron, Tetrahedron, Ring } from "./index";
+
 # Three.js Geometries
 
 Three.js provides a variety of built-in geometries to create different shapes and structures in 3D space. Below is a comprehensive list of geometries, along with examples of how to use them in both Three.js and React-Three-Fiber.
@@ -26,6 +28,7 @@ function Box() {
 }
 ```
 
+<Box />
 
 ## 2. SphereGeometry
 Creates a sphere.
@@ -50,6 +53,7 @@ function Sphere() {
 }
 ```
 
+<Sphere />
 
 ## 3. PlaneGeometry
 Creates a flat 2D plane.
@@ -74,6 +78,7 @@ function Plane() {
 }
 ```
 
+<Plane />
 
 ## 4. CircleGeometry
 Creates a circle.
@@ -97,6 +102,8 @@ function Circle() {
   );
 }
 ```
+
+<Circle />
 
 
 ## 5. ConeGeometry
@@ -122,6 +129,7 @@ function Cone() {
 }
 ```
 
+<Cone />
 
 ## 6. CylinderGeometry
 Creates a cylinder.
@@ -146,6 +154,7 @@ function Cylinder() {
 }
 ```
 
+<Cylinder />
 
 ## 7. TorusGeometry
 Creates a torus (ring or donut shape).
@@ -170,6 +179,7 @@ function Torus() {
 }
 ```
 
+<Torus />
 
 ## 8. TorusKnotGeometry
 Creates a torus knot.
@@ -193,6 +203,8 @@ function TorusKnot() {
   );
 }
 ```
+
+<TorusKnot />
 
 
 ## 9. DodecahedronGeometry
@@ -218,6 +230,7 @@ function Dodecahedron() {
 }
 ```
 
+<Dodecahedron />
 
 ## 10. IcosahedronGeometry
 Creates an icosahedron (20-faced polyhedron).
@@ -241,6 +254,8 @@ function Icosahedron() {
   );
 }
 ```
+
+<Icosahedron />
 
 
 ## 11. OctahedronGeometry
@@ -266,6 +281,8 @@ function Octahedron() {
 }
 ```
 
+<Octahedron />
+
 
 ## 12. TetrahedronGeometry
 Creates a tetrahedron (4-faced polyhedron).
@@ -290,6 +307,7 @@ function Tetrahedron() {
 }
 ```
 
+<Tetrahedron />
 
 ## 13. RingGeometry
 Creates a ring.
@@ -314,39 +332,5 @@ function Ring() {
 }
 ```
 
-
-## 14. TextGeometry
-Creates 3D text.
-
-###### Three.js Example
-```javascript
-const loader = new THREE.FontLoader();
-loader.load('path/to/font.json', function (font) {
-  const geometry = new THREE.TextGeometry('Hello, Three.js!', {
-    font: font,
-    size: 1,
-    height: 0.2,
-  });
-  const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-  const text = new THREE.Mesh(geometry, material);
-  scene.add(text);
-});
-```
-
-###### React-Three-Fiber Example
-```jsx
-import { useLoader } from '@react-three/fiber';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
-
-function Text() {
-  const font = useLoader(FontLoader, 'path/to/font.json');
-  return (
-    <mesh>
-      <textGeometry args={["Hello, Three.js!", { font, size: 1, height: 0.2 }]} />
-      <meshBasicMaterial color="white" />
-    </mesh>
-  );
-}
-```
+<Ring />
 
