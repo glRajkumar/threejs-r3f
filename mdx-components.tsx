@@ -106,7 +106,7 @@ const customComponents = {
   Image: RoundedImage,
   a: CustomLink,
   Table,
-  pre: ({ children }: readOnlychild) => <div className="not-prose">{children}</div>,
+  pre: ({ children }: readOnlychild) => <div className="overflow-x-auto">{children}</div>,
   code: ({ className, children }: { className?: string } & readOnlychild) => {
     const match = /language-(\w+)/.exec(className || '')
     return match ? (
