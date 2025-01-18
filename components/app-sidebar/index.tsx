@@ -7,6 +7,7 @@ import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -20,6 +21,12 @@ function AppSidebar() {
 
   return (
     <Sidebar className="border-r">
+      <SidebarHeader>
+        <SidebarMenu className="pl-2 pt-2 text-sm font-bold">
+          Threejs + R3F
+        </SidebarMenu>
+      </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>

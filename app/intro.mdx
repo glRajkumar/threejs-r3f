@@ -102,8 +102,15 @@ animate();
 7. Add **Lighting** to the scene.
 8. Use an **Animation Loop** to update and render the scene continuously.
 
-## Key Concepts
 
+## Getting Started
+
+### Installation
+To get started, install React-Three-Fiber and Three.js using npm or yarn:
+
+```bash
+npm install @react-three/fiber three @types/three
+```
 ### Canvas
 The `Canvas` component from React-Three-Fiber serves as the root for your 3D scene, similar to a `div` for HTML or a `svg` for vector graphics. 
 
@@ -192,71 +199,6 @@ function App() {
 }
 ```
 
-## Getting Started
-
-### Installation
-To get started, install React-Three-Fiber and Three.js using npm or yarn:
-
-```bash
-npm install @react-three/fiber three
-```
-
-or
-
-```bash
-yarn add @react-three/fiber three
-```
-
-### Setting Up a Basic Scene
-1. Create a new React project:
-
-```bash
-npx create-react-app my-threejs-app
-cd my-threejs-app
-```
-
-2. Install the required packages:
-
-```bash
-npm install @react-three/fiber three
-```
-
-3. Replace the content of `src/App.js` with:
-
-```jsx
-import { Canvas } from '@react-three/fiber';
-
-function Box() {
-  return (
-    <mesh>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="orange" />
-    </mesh>
-  );
-}
-
-function App() {
-  return (
-    <Canvas>
-      <ambientLight />
-      <Box />
-    </Canvas>
-  );
-}
-
-export default App;
-```
-
-4. Start the development server:
-
-```bash
-npm start
-```
-
 ## Resources
 - [Three.js Documentation](https://threejs.org/docs/)
 - [React-Three-Fiber Documentation](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
-- [Awesome React-Three-Fiber](https://github.com/pmndrs/awesome-react-three-fiber)
-
-## Conclusion
-React-Three-Fiber is a great tool for building interactive 3D web experiences. By combining the power of Three.js with the flexibility of React, it provides a modern and efficient approach to creating 3D graphics. Start experimenting today and bring your ideas to life!
