@@ -1,0 +1,291 @@
+import { Octahedron, Tetrahedron, Ring, Edges, Extrude, Lathe, Polyhedron, Shape, Wireframe } from "./index";
+
+# Three.js Geometries
+
+Three.js provides a variety of built-in geometries to create different shapes and structures in 3D space. Below is a comprehensive list of geometries, along with examples of how to use them in both Three.js and React-Three-Fiber.
+
+
+## 11. OctahedronGeometry
+Creates an octahedron (8-faced polyhedron).
+
+###### Three.js Example
+```javascript
+const geometry = new THREE.OctahedronGeometry(1); // radius
+const material = new THREE.MeshBasicMaterial({ color: 0xaa0000 });
+const octahedron = new THREE.Mesh(geometry, material);
+scene.add(octahedron);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function Octahedron() {
+  return (
+    <mesh>
+      <octahedronGeometry args={[1]} />
+      <meshBasicMaterial color="red" />
+    </mesh>
+  );
+}
+```
+
+<Octahedron />
+
+
+## 12. TetrahedronGeometry
+Creates a tetrahedron (4-faced polyhedron).
+
+###### Three.js Example
+```javascript
+const geometry = new THREE.TetrahedronGeometry(1); // radius
+const material = new THREE.MeshBasicMaterial({ color: 0xaaaa00 });
+const tetrahedron = new THREE.Mesh(geometry, material);
+scene.add(tetrahedron);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function Tetrahedron() {
+  return (
+    <mesh>
+      <tetrahedronGeometry args={[1]} />
+      <meshBasicMaterial color="yellow" />
+    </mesh>
+  );
+}
+```
+
+<Tetrahedron />
+
+## 13. RingGeometry
+Creates a ring.
+
+###### Three.js Example
+```javascript
+const geometry = new THREE.RingGeometry(0.5, 1, 32); // innerRadius, outerRadius, thetaSegments
+const material = new THREE.MeshBasicMaterial({ color: 0x888888, side: THREE.DoubleSide });
+const ring = new THREE.Mesh(geometry, material);
+scene.add(ring);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function Ring() {
+  return (
+    <mesh>
+      <ringGeometry args={[0.5, 1, 32]} />
+      <meshBasicMaterial color="gray" side={THREE.DoubleSide} />
+    </mesh>
+  );
+}
+```
+
+<Ring />
+
+
+## 14. EdgesGeometry
+Creates a geometry representing edges only.
+
+###### Three.js Example
+```javascript
+const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+const geometry = new THREE.EdgesGeometry(boxGeometry);
+const material = new THREE.LineBasicMaterial({ color: 0xffffff });
+const edges = new THREE.LineSegments(geometry, material);
+scene.add(edges);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function Edges() {
+  return (
+    <lineSegments>
+      <edgesGeometry args={[new THREE.BoxGeometry(1, 1, 1)]} />
+      <lineBasicMaterial color="white" />
+    </lineSegments>
+  );
+}
+```
+
+<Edges />
+
+
+## 15. ExtrudeGeometry
+Creates an extruded shape.
+
+###### Three.js Example
+```javascript
+const shape = new THREE.Shape();
+shape.moveTo(0, 0);
+shape.lineTo(0, 1);
+shape.lineTo(1, 1);
+shape.lineTo(1, 0);
+shape.lineTo(0, 0);
+
+const geometry = new THREE.ExtrudeGeometry(shape, { depth: 1, bevelEnabled: false });
+const material = new THREE.MeshBasicMaterial({ color: 0xff00ff });
+const extrude = new THREE.Mesh(geometry, material);
+scene.add(extrude);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function Extrude() {
+  const shape = new THREE.Shape();
+  shape.moveTo(0, 0);
+  shape.lineTo(0, 1);
+  shape.lineTo(1, 1);
+  shape.lineTo(1, 0);
+  shape.lineTo(0, 0);
+
+  return (
+    <mesh>
+      <extrudeGeometry args={[shape, { depth: 1, bevelEnabled: false }]} />
+      <meshBasicMaterial color="magenta" />
+    </mesh>
+  );
+}
+```
+
+<Extrude />
+
+
+## 16. LatheGeometry
+Creates a geometry by rotating a set of points.
+
+###### Three.js Example
+```javascript
+const points = [];
+for (let i = 0; i < 10; i++) {
+  points.push(new THREE.Vector2(Math.sin(i * 0.2) * 5 + 5, (i - 5) * 2));
+}
+const geometry = new THREE.LatheGeometry(points, 32);
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const lathe = new THREE.Mesh(geometry, material);
+scene.add(lathe);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function Lathe() {
+  const points = [];
+  for (let i = 0; i < 10; i++) {
+    points.push(new THREE.Vector2(Math.sin(i * 0.2) * 5 + 5, (i - 5) * 2));
+  }
+
+  return (
+    <mesh>
+      <latheGeometry args={[points, 32]} />
+      <meshBasicMaterial color="green" />
+    </mesh>
+  );
+}
+```
+
+<Lathe />
+
+
+## 17. PolyhedronGeometry
+Creates a polyhedron using vertices and faces.
+
+###### Three.js Example
+```javascript
+const vertices = [
+  1, 1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1
+];
+const indices = [
+  2, 1, 0, 0, 3, 2, 1, 3, 0, 2, 3, 1
+];
+const geometry = new THREE.PolyhedronGeometry(vertices, indices, 1, 2);
+const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+const polyhedron = new THREE.Mesh(geometry, material);
+scene.add(polyhedron);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function Polyhedron() {
+  const vertices = [
+    1, 1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1
+  ];
+  const indices = [
+    2, 1, 0, 0, 3, 2, 1, 3, 0, 2, 3, 1
+  ];
+
+  return (
+    <mesh>
+      <polyhedronGeometry args={[vertices, indices, 1, 2]} />
+      <meshBasicMaterial color="yellow" />
+    </mesh>
+  );
+}
+```
+
+<Polyhedron />
+
+
+## 18. ShapeGeometry
+Creates a geometry from a 2D shape.
+
+###### Three.js Example
+```javascript
+const shape = new THREE.Shape();
+shape.moveTo(0, 0);
+shape.lineTo(0, 1);
+shape.lineTo(1, 1);
+shape.lineTo(1, 0);
+shape.lineTo(0, 0);
+
+const geometry = new THREE.ShapeGeometry(shape);
+const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+const shapeMesh = new THREE.Mesh(geometry, material);
+scene.add(shapeMesh);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function Shape() {
+  const shape = new THREE.Shape();
+  shape.moveTo(0, 0);
+  shape.lineTo(0, 1);
+  shape.lineTo(1, 1);
+  shape.lineTo(1, 0);
+  shape.lineTo(0, 0);
+
+  return (
+    <mesh>
+      <shapeGeometry args={[shape]} />
+      <meshBasicMaterial color="blue" />
+    </mesh>
+  );
+}
+```
+
+<Shape />
+
+
+## 19. WireframeGeometry
+Creates a wireframe representation of a geometry.
+
+###### Three.js Example
+```javascript
+const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+const geometry = new THREE.WireframeGeometry(boxGeometry);
+const material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+const wireframe = new THREE.LineSegments(geometry, material);
+scene.add(wireframe);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function Wireframe() {
+  return (
+    <lineSegments>
+      <wireframeGeometry args={[new THREE.BoxGeometry(1, 1, 1)]} />
+      <lineBasicMaterial color="red" />
+    </lineSegments>
+  );
+}
+```
+
+<Wireframe />
+

@@ -1,4 +1,4 @@
-import { Box, Sphere, Plane, Circle, Cone, Cylinder, Torus, TorusKnot, Dodecahedron, Icosahedron, Octahedron, Tetrahedron, Ring } from "./index";
+import { Box, Sphere, Plane, Circle, Cone, Cylinder, Torus, TorusKnot, Dodecahedron, Icosahedron } from "./index";
 
 # Three.js Geometries
 
@@ -256,81 +256,3 @@ function Icosahedron() {
 ```
 
 <Icosahedron />
-
-
-## 11. OctahedronGeometry
-Creates an octahedron (8-faced polyhedron).
-
-###### Three.js Example
-```javascript
-const geometry = new THREE.OctahedronGeometry(1); // radius
-const material = new THREE.MeshBasicMaterial({ color: 0xaa0000 });
-const octahedron = new THREE.Mesh(geometry, material);
-scene.add(octahedron);
-```
-
-###### React-Three-Fiber Example
-```jsx
-function Octahedron() {
-  return (
-    <mesh>
-      <octahedronGeometry args={[1]} />
-      <meshBasicMaterial color="red" />
-    </mesh>
-  );
-}
-```
-
-<Octahedron />
-
-
-## 12. TetrahedronGeometry
-Creates a tetrahedron (4-faced polyhedron).
-
-###### Three.js Example
-```javascript
-const geometry = new THREE.TetrahedronGeometry(1); // radius
-const material = new THREE.MeshBasicMaterial({ color: 0xaaaa00 });
-const tetrahedron = new THREE.Mesh(geometry, material);
-scene.add(tetrahedron);
-```
-
-###### React-Three-Fiber Example
-```jsx
-function Tetrahedron() {
-  return (
-    <mesh>
-      <tetrahedronGeometry args={[1]} />
-      <meshBasicMaterial color="yellow" />
-    </mesh>
-  );
-}
-```
-
-<Tetrahedron />
-
-## 13. RingGeometry
-Creates a ring.
-
-###### Three.js Example
-```javascript
-const geometry = new THREE.RingGeometry(0.5, 1, 32); // innerRadius, outerRadius, thetaSegments
-const material = new THREE.MeshBasicMaterial({ color: 0x888888, side: THREE.DoubleSide });
-const ring = new THREE.Mesh(geometry, material);
-scene.add(ring);
-```
-
-###### React-Three-Fiber Example
-```jsx
-function Ring() {
-  return (
-    <mesh>
-      <ringGeometry args={[0.5, 1, 32]} />
-      <meshBasicMaterial color="gray" side={THREE.DoubleSide} />
-    </mesh>
-  );
-}
-```
-
-<Ring />
-

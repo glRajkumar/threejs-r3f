@@ -1,39 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import type { Mesh as MeshType } from 'three';
-
-function Mesh({ children }: readOnlychild) {
-  const meshRef = useRef<MeshType>(null)
-
-  useFrame(() => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.01
-      meshRef.current.rotation.x += 0.01
-    }
-  })
-
-  return (
-    <mesh ref={meshRef}>
-      {children}
-
-      <meshBasicMaterial color="#14b8a6" />
-    </mesh>
-  )
-}
-
-function Wrapper({ children }: readOnlychild) {
-  return (
-    <div className="h-96 border mt-4 rounded-lg shadow">
-      <Canvas>
-        <Mesh>
-          {children}
-        </Mesh>
-      </Canvas>
-    </div>
-  )
-}
+import { Wrapper } from "../wrapper";
 
 export function Box() {
   return (
@@ -111,30 +78,6 @@ export function Icosahedron() {
   return (
     <Wrapper>
       <icosahedronGeometry args={[1]} />
-    </Wrapper>
-  )
-}
-
-export function Octahedron() {
-  return (
-    <Wrapper>
-      <octahedronGeometry args={[1]} />
-    </Wrapper>
-  )
-}
-
-export function Tetrahedron() {
-  return (
-    <Wrapper>
-      <tetrahedronGeometry args={[1]} />
-    </Wrapper>
-  )
-}
-
-export function Ring() {
-  return (
-    <Wrapper>
-      <boxGeometry args={[1, 1, 1]} />
     </Wrapper>
   )
 }

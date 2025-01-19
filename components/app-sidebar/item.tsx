@@ -9,8 +9,12 @@ export const items = [
     href: "basics",
     children: [
       {
-        title: "Geometry",
-        href: "geometries",
+        title: "Geometry Part 1",
+        href: "geometries-1",
+      },
+      {
+        title: "Geometry Part 2",
+        href: "geometries-2",
       },
     ]
   },
