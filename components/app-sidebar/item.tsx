@@ -17,8 +17,12 @@ export const items = [
         href: "geometries-2",
       },
       {
-        title: "Materials",
-        href: "materials",
+        title: "Materials Part 1",
+        href: "materials-1",
+      },
+      {
+        title: "Materials Part 2",
+        href: "materials-2",
       },
     ]
   },

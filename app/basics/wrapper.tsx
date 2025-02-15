@@ -4,7 +4,11 @@ import { useRef } from "react";
 import { Canvas, CanvasProps, useFrame } from "@react-three/fiber";
 import { Mesh as ThreeMesh } from 'three';
 
-function Mesh({ children }: readOnlychild) {
+type commonProps = {
+  useDefaultMaterial?: boolean
+}
+
+function Mesh({ children, useDefaultMaterial = true }: readOnlychild & commonProps) {
   const meshRef = useRef<ThreeMesh>(null)
 
   useFrame(() => {
@@ -18,16 +22,21 @@ function Mesh({ children }: readOnlychild) {
     <mesh ref={meshRef}>
       {children}
 
-      <meshBasicMaterial color="#14b8a6" />
+      {
+        useDefaultMaterial &&
+        <meshBasicMaterial color="#14b8a6" />
+      }
     </mesh>
   )
 }
 
-export function Wrapper({ children, ...rest }: readOnlychild & CanvasProps) {
+type props = readOnlychild & CanvasProps & commonProps
+
+export function Wrapper({ children, useDefaultMaterial, ...rest }: props) {
   return (
     <div className="h-96 border mt-4 rounded-lg shadow">
       <Canvas {...rest}>
-        <Mesh>
+        <Mesh useDefaultMaterial={useDefaultMaterial}>
           {children}
         </Mesh>
       </Canvas>
