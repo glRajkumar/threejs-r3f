@@ -1,0 +1,335 @@
+# Three.js Materials
+
+## 1. MeshBasicMaterial
+A basic material without lighting effects.
+
+###### Three.js Example
+```javascript
+const material = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: true });
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function MeshBasicMaterial() {
+  return (
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial color="blue" />
+    </mesh>
+  );
+}
+```
+
+
+## 2. LineBasicMaterial
+Creates a simple colored line material.
+
+###### Three.js Example
+```javascript
+const material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+const geometry = new THREE.OctahedronGeometry(1);
+const line = new THREE.Line(geometry, material);
+scene.add(line);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function LineBasicMaterial() {
+  return (
+    <line>
+      <octahedronGeometry args={[1]} />
+      <lineBasicMaterial color="red" />
+    </line>
+  );
+}
+```
+
+
+## 3. LineDashedMaterial
+Creates a dashed line effect.
+
+###### Three.js Example
+```javascript
+const material = new THREE.LineDashedMaterial({ color: 0x00ff00, dashSize: 0.2, gapSize: 0.1 });
+const geometry = new THREE.OctahedronGeometry(1);
+const line = new THREE.LineSegments(geometry, material);
+line.computeLineDistances();
+scene.add(line);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function LineDashedMaterial() {
+  return (
+    <lineSegments>
+      <octahedronGeometry args={[1]} />
+      <lineDashedMaterial
+        color="green"
+        dashSize={0.3}
+        gapSize={0.3}
+      />
+    </lineSegments>
+  );
+}
+```
+
+
+## 4. MeshStandardMaterial
+A physically-based material affected by lighting.
+
+###### Three.js Example
+```javascript
+const material = new THREE.MeshStandardMaterial({ color: 0xffa500 });
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function MeshStandardMaterial() {
+  return (
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial color="blue" />
+      <ambientLight intensity={5} />
+      <pointLight position={[2, 2, 2]} />
+    </mesh>
+  );
+}
+```
+
+
+## 5. MeshDepthMaterial
+Renders depth values to create effects like fog and shadows.
+
+###### Three.js Example
+```javascript
+const material = new THREE.MeshDepthMaterial();
+const geometry = new THREE.PlaneGeometry(2, 2);
+const plane = new THREE.Mesh(geometry, material);
+scene.add(plane);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function MeshDepthMaterial() {
+  return (
+    <mesh>
+      <planeGeometry args={[2, 2]} />
+      <meshDepthMaterial />
+    </mesh>
+  );
+}
+```
+
+
+## 6. MeshDistanceMaterial
+Useful for shadow calculations and custom effects.
+
+###### Three.js Example
+```javascript
+const material = new THREE.MeshDistanceMaterial();
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function MeshDistanceMaterial() {
+  return (
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshDistanceMaterial />
+    </mesh>
+  );
+}
+```
+
+
+## 7. MeshLambertMaterial
+A non-shiny material affected by lights.
+
+###### Three.js Example
+```javascript
+const material = new THREE.MeshLambertMaterial({ color: 0x44aa88 });
+const geometry = new THREE.SphereGeometry(1, 32, 32);
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function MeshLambertMaterial() {
+  return (
+    <mesh>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshLambertMaterial color="teal" />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[2, 2, 2]} />
+  </mesh>
+  );
+}
+```
+
+
+## 8. MeshMatcapMaterial
+Uses a matcap texture for a unique shading effect.
+
+###### Three.js Example
+```javascript
+const textureLoader = new THREE.TextureLoader();
+const matcap = textureLoader.load('path/to/matcap.png');
+const material = new THREE.MeshMatcapMaterial({ matcap });
+const geometry = new THREE.TorusGeometry(1, 0.4, 16, 100);
+const torus = new THREE.Mesh(geometry, material);
+scene.add(torus);
+```
+
+###### React-Three-Fiber Example
+```jsx
+import { TextureLoader } from 'three';
+import { useLoader } from '@react-three/fiber';
+
+function MeshMatcapMaterial() {
+  const matcap = useLoader(TextureLoader, 'path/to/matcap.png');
+  return (
+    <mesh>
+      <torusGeometry args={[1, 0.4, 16, 100]} />
+      <meshMatcapMaterial matcap={matcap} />
+    </mesh>
+  );
+}
+```
+
+
+## 9. MeshNormalMaterial
+Displays colors based on surface normals.
+
+###### Three.js Example
+```javascript
+const material = new THREE.MeshNormalMaterial();
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function MeshNormalMaterial() {
+  return (
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshNormalMaterial />
+    </mesh>
+  );
+}
+```
+
+
+## 10. MeshPhongMaterial
+Shiny material with specular highlights.
+
+###### Three.js Example
+```javascript
+const material = new THREE.MeshPhongMaterial({ color: 0xff0000, shininess: 100 });
+const geometry = new THREE.SphereGeometry(1, 32, 32);
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function MeshPhongMaterial() {
+  return (
+    <mesh>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshPhongMaterial color="red" shininess={100} />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[2, 2, 2]} />
+    </mesh>
+  );
+}
+```
+
+
+## 11. MeshPhysicalMaterial
+Extended version of `MeshStandardMaterial` with advanced properties.
+
+###### Three.js Example
+```javascript
+const material = new THREE.MeshPhysicalMaterial({ color: 0x00ff00, clearcoat: 1.0, clearcoatRoughness: 0.1 });
+const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
+const torusKnot = new THREE.Mesh(geometry, material);
+scene.add(torusKnot);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function MeshPhysicalMaterial() {
+  return (
+    <mesh>
+      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+      <meshPhysicalMaterial color="green" clearcoat={1.0} clearcoatRoughness={0.1} />
+      <ambientLight intensity={0.5} />
+    </mesh>
+  );
+}
+```
+
+
+## 12. MeshToonMaterial
+Creates a cartoon-style shading effect.
+
+###### Three.js Example
+```javascript
+const material = new THREE.MeshToonMaterial({ color: 0x0000ff });
+const geometry = new THREE.CylinderGeometry(0.5, 0.5, 2, 32);
+const cylinder = new THREE.Mesh(geometry, material);
+scene.add(cylinder);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function MeshToonMaterial() {
+  return (
+    <mesh>
+      <cylinderGeometry args={[0.5, 0.5, 2, 32]} />
+      <meshToonMaterial color="blue" />
+    </mesh>
+  );
+}
+```
+
+
+## 13. PointsMaterial
+Used for rendering points instead of meshes.
+
+###### Three.js Example
+```javascript
+const material = new THREE.PointsMaterial({ color: 0xff00ff, size: 0.1 });
+const geometry = new THREE.BufferGeometry();
+const vertices = new Float32Array([0, 0, 0, 1, 1, 1, -1, -1, -1]);
+geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+const points = new THREE.Points(geometry, material);
+scene.add(points);
+```
+
+###### React-Three-Fiber Example
+```jsx
+function PointsMaterial() {
+  return (
+    <points>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" array={new Float32Array([0, 0, 0, 1, 1, 1, -1, -1, -1])} count={3} itemSize={3} />
+      </bufferGeometry>
+      <pointsMaterial color="magenta" size={0.1} />
+    </points>
+  );
+}
+```
+

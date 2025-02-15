@@ -16,6 +16,10 @@ export const items = [
         title: "Geometry Part 2",
         href: "geometries-2",
       },
+      {
+        title: "Materials",
+        href: "materials",
+      },
     ]
   },
 ]
