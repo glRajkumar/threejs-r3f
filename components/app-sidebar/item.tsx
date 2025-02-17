@@ -24,6 +24,10 @@ export const items = [
         title: "Materials Part 2",
         href: "materials-2",
       },
+      {
+        title: "Camera",
+        href: "camera",
+      },
     ]
   },
 ]
