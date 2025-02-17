@@ -34,7 +34,7 @@ type props = readOnlychild & CanvasProps & commonProps
 
 export function Wrapper({ children, useDefaultMaterial, ...rest }: props) {
   return (
-    <div className="h-96 border mt-4 rounded-lg shadow">
+    <div className="h-96 border mt-4 rounded-lg shadow-sm">
       <Canvas {...rest}>
         <Mesh useDefaultMaterial={useDefaultMaterial}>
           {children}

@@ -10,7 +10,7 @@ type props = {
 function MarkdownBlocker({ markdown }: props) {
   return (
     <ReactMarkdown
-      className="max-w-max prose prose-sm prose-pre:p-0 prose-pre:!m-0 prose-th:py-1 prose-th:px-2 prose-td:px-2"
+      className="max-w-max prose prose-sm prose-pre:p-0 prose-pre:m-0! prose-th:py-1 prose-th:px-2 prose-td:px-2"
       remarkPlugins={[remarkGfm]}
       components={{
         code({ node, className, children, ...props }) {
