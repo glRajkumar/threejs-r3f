@@ -1,22 +1,13 @@
 import { PerspectiveCamera, OrthographicCameraExample, CubeCameraExample } from "./index";
 
 # Three.js Cameras
-
 Cameras in Three.js define the point of view from which a scene is rendered. Different types of cameras allow for various perspectives and effects.
-
-## Types of Cameras
-
-1. **PerspectiveCamera**: Simulates the human eye with perspective projection.
-2. **OrthographicCamera**: Uses orthographic projection where objects appear the same size regardless of distance.
-3. **CubeCamera**: Captures a scene from multiple directions (for reflections and environment maps).
-4. **ArrayCamera**: Renders a scene from multiple perspectives simultaneously.
-5. **Camera**: A basic abstract camera class from which all cameras inherit.
-6. **StereoCamera**: Renders scenes for stereoscopic (3D) effects.
 
 
 ## 1. Camera (Base Class)
+A basic abstract camera class from which all cameras inherit.
 
-### Three.js Example
+###### Three.js Example
 ```javascript
 const camera = new THREE.Camera();
 camera.position.z = 5;
@@ -25,8 +16,9 @@ scene.add(camera);
 
 
 ## 2. PerspectiveCamera
+Simulates the human eye with perspective projection.
 
-### Three.js Example
+###### Three.js Example
 ```javascript
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 1, 5);
@@ -42,7 +34,7 @@ const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 ```
 
-### React-Three-Fiber Example
+###### React-Three-Fiber Example
 ```jsx
 import { Canvas } from '@react-three/fiber';
 
@@ -68,8 +60,9 @@ export default function PerspectiveCamera() {
 
 
 ## 3. OrthographicCamera
+Uses orthographic projection where objects appear the same size regardless of distance.
 
-### Three.js Example
+###### Three.js Example
 ```javascript
 const aspect = window.innerWidth / window.innerHeight;
 const camera = new THREE.OrthographicCamera(-aspect, aspect, 1, -1, 0.1, 1000);
@@ -93,7 +86,7 @@ function animate() {
 animate();
 ```
 
-### React-Three-Fiber Example
+###### React-Three-Fiber Example
 ```jsx
 import { OrthographicCamera } from '@react-three/drei';
 
@@ -120,15 +113,16 @@ export default function OrthographicCameraExample() {
 
 
 ## 4. CubeCamera
+Captures a scene from multiple directions (for reflections and environment maps).
 
-### Three.js Example
+###### Three.js Example
 ```javascript
 const cubeRenderTarget = new THREE.WebGLCubeRenderTarget(256);
 const cubeCamera = new THREE.CubeCamera(1, 1000, cubeRenderTarget);
 scene.add(cubeCamera);
 ```
 
-### React-Three-Fiber Example
+###### React-Three-Fiber Example
 ```jsx
 import { CubeCamera } from '@react-three/drei';
 
@@ -150,8 +144,9 @@ function CubeCameraExample() {
 
 
 ## 5. ArrayCamera
+Renders a scene from multiple perspectives simultaneously.
 
-### Three.js Example
+###### Three.js Example
 ```javascript
 const cameras = [
   new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000),
@@ -160,7 +155,7 @@ const cameras = [
 const arrayCamera = new THREE.ArrayCamera(cameras);
 ```
 
-### React-Three-Fiber Example
+###### React-Three-Fiber Example
 Currently, **ArrayCamera** is not natively supported in `@react-three/fiber`. However, it can be implemented using custom cameras and multiple render passes.
 
 
@@ -250,9 +245,9 @@ function ArrayCameraExample() {
 ```
 
 ## 6. StereoCamera
-The StereoCamera in Three.js creates a stereoscopic effect for VR or 3D anaglyph rendering.
+Renders scenes for stereoscopic (3D) effects. The StereoCamera in Three.js creates a stereoscopic effect for VR or 3D anaglyph rendering.
 
-### Three.js Example
+###### Three.js Example
 ```javascript
 const stereoCamera = new THREE.StereoCamera();
 stereoCamera.position.set(0, 1, 5);

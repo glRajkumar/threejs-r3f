@@ -28,6 +28,10 @@ export const items = [
         title: "Camera",
         href: "camera",
       },
+      {
+        title: "Light",
+        href: "light",
+      },
     ]
   },
 ]
