@@ -32,6 +32,10 @@ export const items = [
         title: "Light",
         href: "light",
       },
+      {
+        title: "Shadow",
+        href: "shadow",
+      },
     ]
   },
 ]
