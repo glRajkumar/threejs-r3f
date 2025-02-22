@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 
 import { checkFileExists } from "@/utils/file-helper";
 import { staticSlugs } from "@/components/docs/slugs";
+import NotFound from "@/components/not-found";
 
 interface props {
   params: Promise<{
@@ -19,9 +20,7 @@ async function Page({ params }: props) {
   const filePath = `/components/docs/${slug.join("/")}/page.mdx`
   const isFileExists = await checkFileExists(filePath)
 
-  if (!isFileExists) {
-    return <div>Not found</div>
-  }
+  if (!isFileExists) return <NotFound />
 
   const MDXComponent = dynamic(() => import(`@${filePath}`))
 
