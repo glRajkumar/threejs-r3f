@@ -10,7 +10,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
-import { items } from "./item";
+import { slugs } from "../slugs";
 import MenuItem from "./menu";
 
 function AppSidebar() {
@@ -25,13 +25,15 @@ function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent className="gap-0">
-        {items?.map((item) => (
-          <MenuItem
-            {...item}
-            key={item.title}
-            pathname={pathname}
-          />
-        ))}
+        {
+          slugs?.map((item) => (
+            <MenuItem
+              {...item}
+              key={item.title}
+              pathname={pathname}
+            />
+          ))
+        }
       </SidebarContent>
 
       <SidebarRail />

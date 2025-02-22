@@ -41,7 +41,7 @@ function MenuItem({ title, href, children, pathname }: MenuItemProps) {
         <SidebarMenu>
           <Item
             title={title}
-            href={`/${href}`}
+            href={`/docs/${href}`}
             pathname={pathname}
           />
         </SidebarMenu>
@@ -62,7 +62,7 @@ function MenuItem({ title, href, children, pathname }: MenuItemProps) {
               children.map(child => (
                 <Item
                   key={child.title}
-                  href={`/${href}/${child.href}`}
+                  href={`/docs/${href}/${child.href}`}
                   title={child.title}
                   pathname={pathname}
                 />

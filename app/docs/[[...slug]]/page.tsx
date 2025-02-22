@@ -15,7 +15,8 @@ export async function generateStaticParams() {
 
 async function Page({ params }: props) {
   const slug = (await params).slug
-  const filePath = `/app/${slug.join("/")}/page.mdx`
+
+  const filePath = `/components/docs/${slug.join("/")}/page.mdx`
   const isFileExists = await checkFileExists(filePath)
 
   if (!isFileExists) {
