@@ -1,6 +1,8 @@
-# Exploring Cameras in Three.js and React-Three-Fiber
+import { PerspectiveCamera, OrthographicCameraExample, CubeCameraExample } from "./index";
 
-Cameras in Three.js and React-Three-Fiber define the point of view from which a scene is rendered. Different types of cameras allow for various perspectives and effects.
+# Three.js Cameras
+
+Cameras in Three.js define the point of view from which a scene is rendered. Different types of cameras allow for various perspectives and effects.
 
 ## Types of Cameras
 
@@ -12,7 +14,17 @@ Cameras in Three.js and React-Three-Fiber define the point of view from which a 
 6. **StereoCamera**: Renders scenes for stereoscopic (3D) effects.
 
 
-## 1. PerspectiveCamera
+## 1. Camera (Base Class)
+
+### Three.js Example
+```javascript
+const camera = new THREE.Camera();
+camera.position.z = 5;
+scene.add(camera);
+```
+
+
+## 2. PerspectiveCamera
 
 ### Three.js Example
 ```javascript
@@ -43,7 +55,7 @@ function Box() {
   );
 }
 
-export default function App() {
+export default function PerspectiveCamera() {
   return (
     <Canvas camera={{ position: [0, 1, 5], fov: 75 }}>
       <Box />
@@ -52,8 +64,10 @@ export default function App() {
 }
 ```
 
+<PerspectiveCamera />
 
-## 2. OrthographicCamera
+
+## 3. OrthographicCamera
 
 ### Three.js Example
 ```javascript
@@ -81,7 +95,7 @@ animate();
 
 ### React-Three-Fiber Example
 ```jsx
-import { Canvas, OrthographicCamera } from '@react-three/fiber';
+import { OrthographicCamera } from '@react-three/drei';
 
 function Box() {
   return (
@@ -92,7 +106,7 @@ function Box() {
   );
 }
 
-export default function App() {
+export default function OrthographicCameraExample() {
   return (
     <Canvas>
       <OrthographicCamera makeDefault position={[0, 1, 5]} zoom={100} />
@@ -102,9 +116,10 @@ export default function App() {
 }
 ```
 
----
+<OrthographicCameraExample />
 
-## 3. CubeCamera
+
+## 4. CubeCamera
 
 ### Three.js Example
 ```javascript
@@ -117,21 +132,24 @@ scene.add(cubeCamera);
 ```jsx
 import { CubeCamera } from '@react-three/drei';
 
-function ReflectiveSphere() {
+function CubeCameraExample() {
   return (
     <CubeCamera resolution={256} frames={1}>
       {(texture) => (
-        <mesh>
-          <sphereGeometry args={[1, 64, 64]} />
+        <Mesh>
+          <boxGeometry />
           <meshStandardMaterial envMap={texture} />
-        </mesh>
+        </Mesh>
       )}
     </CubeCamera>
   );
 }
 ```
 
-## 4. ArrayCamera
+<CubeCameraExample />
+
+
+## 5. ArrayCamera
 
 ### Three.js Example
 ```javascript
@@ -146,19 +164,93 @@ const arrayCamera = new THREE.ArrayCamera(cameras);
 Currently, **ArrayCamera** is not natively supported in `@react-three/fiber`. However, it can be implemented using custom cameras and multiple render passes.
 
 
-## 5. Camera (Base Class)
+```jsx
+"use client";
 
-### Three.js Example
-```javascript
-const camera = new THREE.Camera();
-camera.position.z = 5;
-scene.add(camera);
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useRef, useEffect } from "react";
+import { OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
+
+function RotatingCube() {
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.01;
+      meshRef.current.rotation.x += 0.01;
+    }
+  });
+
+  return (
+    <mesh ref={meshRef} position={[0, 1, 0]}>
+      <boxGeometry />
+      <meshStandardMaterial color="royalblue" />
+    </mesh>
+  );
+}
+
+function MultiViewCamera() {
+  const { gl, scene, size } = useThree();
+
+  useEffect(() => {
+    const aspect = size.width / size.height;
+
+    // Create multiple perspective cameras
+    const subCameras = [
+      new THREE.PerspectiveCamera(50, aspect, 0.1, 100),
+      new THREE.PerspectiveCamera(50, aspect, 0.1, 100),
+      new THREE.PerspectiveCamera(50, aspect, 0.1, 100),
+      new THREE.PerspectiveCamera(50, aspect, 0.1, 100),
+    ];
+
+    // Set camera positions for different viewpoints
+    subCameras[0].position.set(5, 5, 5);  // Top-Right View
+    subCameras[1].position.set(-5, 5, 5); // Top-Left View
+    subCameras[2].position.set(5, -5, 5); // Bottom-Right View
+    subCameras[3].position.set(-5, -5, 5); // Bottom-Left View
+
+    // All cameras look at the scene center
+    subCameras.forEach((cam) => cam.lookAt(0, 0, 0));
+
+    // Create the ArrayCamera
+    const arrayCamera = new THREE.ArrayCamera(subCameras);
+
+    // Assign the array camera to the renderer
+    gl.setAnimationLoop(() => {
+      gl.setViewport(0, 0, size.width, size.height);
+      gl.render(scene, arrayCamera);
+    });
+
+    return () => {
+      gl.setAnimationLoop(null); // Cleanup
+    };
+  }, [gl, scene, size]);
+
+  return null
+}
+
+function ArrayCameraExample() {
+  return (
+    <Canvas>
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[5, 5, 5]} />
+
+      <MultiViewCamera />
+
+      <RotatingCube />
+
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]}>
+        <planeGeometry args={[10, 10]} />
+        <meshStandardMaterial color="gray" />
+      </mesh>
+    </div>
+  );
+}
 ```
 
-Note: In practice, use specialized cameras (e.g., `PerspectiveCamera` or `OrthographicCamera`).
-
-
 ## 6. StereoCamera
+The StereoCamera in Three.js creates a stereoscopic effect for VR or 3D anaglyph rendering.
 
 ### Three.js Example
 ```javascript
@@ -167,6 +259,63 @@ stereoCamera.position.set(0, 1, 5);
 ```
 
 This is used for stereoscopic (3D) vision by rendering two viewpoints.
+
+```jsx
+"use client";
+
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef } from "react";
+import { VRButton, XR } from "@react-three/xr";
+import { StereoCamera, OrbitControls } from "@react-three/drei";
+import { Mesh as ThreeMesh } from "three";
+
+function RotatingCube() {
+  const meshRef = useRef<ThreeMesh>(null);
+
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.01;
+      meshRef.current.rotation.x += 0.01;
+    }
+  });
+
+  return (
+    <mesh ref={meshRef} position={[0, 1, 0]}>
+      <boxGeometry />
+      <meshStandardMaterial color="royalblue" />
+    </mesh>
+  );
+}
+
+function StereoCameraExample() {
+  return (
+    <div className="h-96 border mt-4 rounded-lg shadow-sm">
+      {/* VR Button */}
+      <VRButton />
+
+      <Canvas>
+        <XR>
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[5, 5, 5]} />
+
+          {/* Stereo Camera for 3D effect */}
+          <StereoCamera eyeSep={0.064} />
+
+          {/* 3D Objects */}
+          <RotatingCube />
+          <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]}>
+            <planeGeometry args={[10, 10]} />
+            <meshStandardMaterial color="gray" />
+          </mesh>
+
+          {/* Controls for mouse interaction */}
+          <OrbitControls />
+        </XR>
+      </Canvas>
+    </div>
+  );
+}
+```
 
 
 ## Summary
