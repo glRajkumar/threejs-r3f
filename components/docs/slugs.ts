@@ -42,6 +42,10 @@ export const slugs: Slug[] = [
         title: "Shadow",
         href: "shadow",
       },
+      {
+        title: "Helpers",
+        href: "helpers",
+      },
     ]
   },
 ]
