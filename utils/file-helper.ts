@@ -5,6 +5,17 @@ import fs from 'fs/promises';
 
 type fileT = { fileName: string; content: string }
 
+export async function checkFileExists(filePath: string): Promise<boolean> {
+  try {
+    const absolutePath = path.join(process.cwd(), filePath)
+    await fs.stat(absolutePath)
+    return true
+
+  } catch (error) {
+    return false
+  }
+}
+
 export async function getFileContent(filePath: string): Promise<fileT> {
   const absolutePath = path.join(process.cwd(), filePath)
   const content = await fs.readFile(absolutePath, 'utf8')
