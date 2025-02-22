@@ -1,12 +1,14 @@
 "use client";
 
 import { BoxGeometry, Shape as ThreeShape, Vector2 } from 'three';
-import { Wrapper } from "../wrapper";
+import { Wrapper, Mesh } from "../wrapper";
 
 export function Octahedron() {
   return (
     <Wrapper>
-      <octahedronGeometry args={[1]} />
+      <Mesh>
+        <octahedronGeometry args={[1]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -14,7 +16,9 @@ export function Octahedron() {
 export function Tetrahedron() {
   return (
     <Wrapper>
-      <tetrahedronGeometry args={[1]} />
+      <Mesh>
+        <tetrahedronGeometry args={[1]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -22,7 +26,9 @@ export function Tetrahedron() {
 export function Ring() {
   return (
     <Wrapper>
-      <ringGeometry args={[0.5, 1, 32]} />
+      <Mesh>
+        <ringGeometry args={[0.5, 1, 32]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -30,10 +36,12 @@ export function Ring() {
 export function Edges() {
   return (
     <Wrapper>
-      <lineSegments>
-        <edgesGeometry args={[new BoxGeometry(1, 1, 1)]} />
-        <lineBasicMaterial color="white" />
-      </lineSegments>
+      <Mesh>
+        <lineSegments>
+          <edgesGeometry args={[new BoxGeometry(1, 1, 1)]} />
+          <lineBasicMaterial color="white" />
+        </lineSegments>
+      </Mesh>
     </Wrapper>
   )
 }
@@ -48,7 +56,9 @@ export function Extrude() {
 
   return (
     <Wrapper>
-      <extrudeGeometry args={[shape, { depth: 1, bevelEnabled: false }]} />
+      <Mesh>
+        <extrudeGeometry args={[shape, { depth: 1, bevelEnabled: false }]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -61,7 +71,9 @@ export function Lathe() {
 
   return (
     <Wrapper camera={{ position: [20, 10, 20], fov: 50 }}>
-      <latheGeometry args={[points, 40, 0, 10]} />
+      <Mesh>
+        <latheGeometry args={[points, 40, 0, 10]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -72,7 +84,9 @@ export function Polyhedron() {
 
   return (
     <Wrapper>
-      <polyhedronGeometry args={[vertices, indices, 1, 2]} />
+      <Mesh>
+        <polyhedronGeometry args={[vertices, indices, 1, 2]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -87,7 +101,9 @@ export function Shape() {
 
   return (
     <Wrapper>
-      <shapeGeometry args={[shape]} />
+      <Mesh>
+        <shapeGeometry args={[shape]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -95,8 +111,10 @@ export function Shape() {
 export function Wireframe() {
   return (
     <Wrapper>
-      <wireframeGeometry args={[new BoxGeometry(1, 1, 1)]} />
-      <lineBasicMaterial color="red" />
+      <Mesh>
+        <wireframeGeometry args={[new BoxGeometry(1, 1, 1)]} />
+        <lineBasicMaterial color="red" />
+      </Mesh>
     </Wrapper>
   )
 }

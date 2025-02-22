@@ -1,58 +1,68 @@
 "use client";
 
-import { Wrapper } from '../wrapper';
+import { Wrapper, Mesh } from '../wrapper';
 
 export function MeshBasicMaterial() {
   return (
-    <Wrapper useDefaultMaterial={false}>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <meshBasicMaterial color="blue" />
+    <Wrapper>
+      <Mesh useDefaultMaterial={false}>
+        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+        <meshBasicMaterial color="blue" />
+      </Mesh>
     </Wrapper>
   )
 }
 
 export function LineBasicMaterial() {
   return (
-    <Wrapper useDefaultMaterial={false}>
-      <line>
-        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-        <lineBasicMaterial color="red" />
-      </line>
+    <Wrapper>
+      <Mesh useDefaultMaterial={false}>
+        <line>
+          <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+          <lineBasicMaterial color="red" />
+        </line>
+      </Mesh>
     </Wrapper>
   )
 }
 
 export function LineDashedMaterial() {
   return (
-    <Wrapper useDefaultMaterial={false}>
-      <lineSegments>
-        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-        <lineDashedMaterial
-          color="green"
-          dashSize={0.3}
-          gapSize={0.3}
-        />
-      </lineSegments>
+    <Wrapper>
+      <Mesh useDefaultMaterial={false}>
+        <lineSegments>
+          <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+          <lineDashedMaterial
+            color="green"
+            dashSize={0.3}
+            gapSize={0.3}
+          />
+        </lineSegments>
+      </Mesh>
     </Wrapper>
   )
 }
 
 export function MeshStandardMaterial() {
   return (
-    <Wrapper useDefaultMaterial={false}>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <meshBasicMaterial color="blue" />
-      <ambientLight intensity={5} />
-      <pointLight position={[2, 2, 2]} />
+    <Wrapper>
+      <Mesh useDefaultMaterial={false}>
+        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+        <meshBasicMaterial color="blue" />
+        <ambientLight intensity={5} />
+        <pointLight position={[2, 2, 2]} />
+      </Mesh>
     </Wrapper>
   )
 }
 
 export function MeshDepthMaterial() {
   return (
-    <Wrapper useDefaultMaterial={false}>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <meshDepthMaterial />
+    <Wrapper>
+      <Mesh useDefaultMaterial={false}>
+        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+        <meshDepthMaterial />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -83,40 +93,48 @@ export function MeshDistanceMaterial() {
 
 export function MeshLambertMaterial() {
   return (
-    <Wrapper useDefaultMaterial={false}>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <meshLambertMaterial color="teal" />
-      <ambientLight intensity={0.5} />
-      <pointLight position={[2, 2, 2]} />
+    <Wrapper>
+      <Mesh useDefaultMaterial={false}>
+        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+        <meshLambertMaterial color="teal" />
+        <ambientLight intensity={0.5} />
+        <pointLight position={[2, 2, 2]} />
+      </Mesh>
     </Wrapper>
   )
 }
 
 export function MeshMatcapMaterial() {
   return (
-    <Wrapper useDefaultMaterial={false}>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <meshBasicMaterial color="blue" />
+    <Wrapper>
+      <Mesh useDefaultMaterial={false}>
+        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+        <meshBasicMaterial color="blue" />
+      </Mesh>
     </Wrapper>
   )
 }
 
 export function MeshNormalMaterial() {
   return (
-    <Wrapper useDefaultMaterial={false}>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <meshNormalMaterial />
+    <Wrapper>
+      <Mesh useDefaultMaterial={false}>
+        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+        <meshNormalMaterial />
+      </Mesh>
     </Wrapper>
   )
 }
 
 export function MeshPhongMaterial() {
   return (
-    <Wrapper useDefaultMaterial={false}>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <meshPhongMaterial color="red" shininess={100} />
-      <ambientLight intensity={0.5} />
-      <pointLight position={[2, 2, 2]} />
+    <Wrapper>
+      <Mesh useDefaultMaterial={false}>
+        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+        <meshPhongMaterial color="red" shininess={100} />
+        <ambientLight intensity={0.5} />
+        <pointLight position={[2, 2, 2]} />
+      </Mesh>
     </Wrapper>
   )
 }

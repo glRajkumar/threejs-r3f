@@ -8,7 +8,7 @@ type commonProps = {
   useDefaultMaterial?: boolean
 }
 
-function Mesh({ children, useDefaultMaterial = true }: readOnlychild & commonProps) {
+export function Mesh({ children, useDefaultMaterial = true }: readOnlychild & commonProps) {
   const meshRef = useRef<ThreeMesh>(null)
 
   useFrame(() => {
@@ -30,15 +30,11 @@ function Mesh({ children, useDefaultMaterial = true }: readOnlychild & commonPro
   )
 }
 
-type props = readOnlychild & CanvasProps & commonProps
-
-export function Wrapper({ children, useDefaultMaterial, ...rest }: props) {
+export function Wrapper({ children, ...rest }: readOnlychild & CanvasProps) {
   return (
     <div className="h-96 border mt-4 rounded-lg shadow-sm">
       <Canvas {...rest}>
-        <Mesh useDefaultMaterial={useDefaultMaterial}>
-          {children}
-        </Mesh>
+        {children}
       </Canvas>
     </div>
   )

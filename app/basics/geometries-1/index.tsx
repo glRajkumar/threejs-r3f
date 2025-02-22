@@ -1,11 +1,13 @@
 "use client";
 
-import { Wrapper } from "../wrapper";
+import { Wrapper, Mesh } from "../wrapper";
 
 export function Box() {
   return (
     <Wrapper>
-      <boxGeometry args={[1, 1, 1]} />
+      <Mesh>
+        <boxGeometry args={[1, 1, 1]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -13,7 +15,9 @@ export function Box() {
 export function Sphere() {
   return (
     <Wrapper>
-      <sphereGeometry args={[1, 32, 32]} />
+      <Mesh>
+        <sphereGeometry args={[1, 32, 32]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -21,7 +25,9 @@ export function Sphere() {
 export function Plane() {
   return (
     <Wrapper>
-      <planeGeometry args={[3, 3]} />
+      <Mesh>
+        <planeGeometry args={[3, 3]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -29,7 +35,9 @@ export function Plane() {
 export function Circle() {
   return (
     <Wrapper>
-      <circleGeometry args={[1, 32]} />
+      <Mesh>
+        <circleGeometry args={[1, 32]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -37,7 +45,9 @@ export function Circle() {
 export function Cone() {
   return (
     <Wrapper>
-      <coneGeometry args={[1, 2, 32]} />
+      <Mesh>
+        <coneGeometry args={[1, 2, 32]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -45,7 +55,9 @@ export function Cone() {
 export function Cylinder() {
   return (
     <Wrapper>
-      <cylinderGeometry args={[1, 1, 2, 32]} />
+      <Mesh>
+        <cylinderGeometry args={[1, 1, 2, 32]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -53,7 +65,9 @@ export function Cylinder() {
 export function Torus() {
   return (
     <Wrapper>
-      <torusGeometry args={[1, 0.4, 16, 100]} />
+      <Mesh>
+        <torusGeometry args={[1, 0.4, 16, 100]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -61,7 +75,9 @@ export function Torus() {
 export function TorusKnot() {
   return (
     <Wrapper>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+      <Mesh>
+        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -69,7 +85,9 @@ export function TorusKnot() {
 export function Dodecahedron() {
   return (
     <Wrapper>
-      <dodecahedronGeometry args={[1]} />
+      <Mesh>
+        <dodecahedronGeometry args={[1]} />
+      </Mesh>
     </Wrapper>
   )
 }
@@ -77,7 +95,9 @@ export function Dodecahedron() {
 export function Icosahedron() {
   return (
     <Wrapper>
-      <icosahedronGeometry args={[1]} />
+      <Mesh>
+        <icosahedronGeometry args={[1]} />
+      </Mesh>
     </Wrapper>
   )
 }
