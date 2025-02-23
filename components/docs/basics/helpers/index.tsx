@@ -1,13 +1,18 @@
 "use client";
 
 import { Wrapper, Mesh } from "../wrapper";
-import * as THREE from "three";
+import {
+  ArrowHelperMesh, BoxHelperMesh, Box3HelperMesh,
+  CameraHelperMesh, DirectionalLightHelperMesh,
+  HemisphereLightHelperMesh, PlaneHelperMesh,
+  PointLightHelperMesh, SkeletonHelperMesh,
+  SpotLightHelperMesh
+} from "./helpers";
 
 export function ArrowHelper() {
   return (
     <Wrapper>
-      <Mesh><boxGeometry /></Mesh>
-      <primitive object={new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0).normalize(), new THREE.Vector3(0, 0, 0), 2, 0xff0000)} />
+      <ArrowHelperMesh />
     </Wrapper>
   )
 }
@@ -22,12 +27,9 @@ export function AxesHelper() {
 }
 
 export function BoxHelper() {
-  const mesh = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial())
-
   return (
     <Wrapper>
-      <Mesh><boxGeometry /></Mesh>
-      <primitive object={new THREE.BoxHelper(mesh, 0xffff00)} />
+      <BoxHelperMesh />
     </Wrapper>
   )
 }
@@ -35,8 +37,7 @@ export function BoxHelper() {
 export function Box3Helper() {
   return (
     <Wrapper>
-      <Mesh><boxGeometry /></Mesh>
-      {/* <primitive object={new THREE.Box3Helper(new THREE.Box3().setFromObject(mesh), 0xff0000)} /> */}
+      <Box3HelperMesh />
     </Wrapper>
   )
 }
@@ -44,8 +45,7 @@ export function Box3Helper() {
 export function CameraHelper() {
   return (
     <Wrapper>
-      <Mesh><boxGeometry /></Mesh>
-      {/* <primitive object={new THREE.CameraHelper(camera)} /> */}
+      <CameraHelperMesh />
     </Wrapper>
   )
 }
@@ -53,8 +53,7 @@ export function CameraHelper() {
 export function DirectionalLightHelper() {
   return (
     <Wrapper>
-      <Mesh><boxGeometry /></Mesh>
-      {/* <primitive object={new THREE.DirectionalLightHelper(light, 5)} /> */}
+      <DirectionalLightHelperMesh />
     </Wrapper>
   )
 }
@@ -63,7 +62,7 @@ export function GridHelper() {
   return (
     <Wrapper>
       <Mesh><boxGeometry /></Mesh>
-      <gridHelper args={[10, 10]} />
+      <gridHelper args={[10, 10]} rotation={[1, 0, 0]} />
     </Wrapper>
   )
 }
@@ -72,7 +71,7 @@ export function PolarGridHelper() {
   return (
     <Wrapper>
       <Mesh><boxGeometry /></Mesh>
-      <polarGridHelper args={[10, 10]} />
+      <polarGridHelper args={[10, 10]} rotation={[1, 0, 0]} />
     </Wrapper>
   )
 }
@@ -80,8 +79,7 @@ export function PolarGridHelper() {
 export function HemisphereLightHelper() {
   return (
     <Wrapper>
-      <Mesh><boxGeometry /></Mesh>
-      {/* <primitive object={new THREE.HemisphereLightHelper(hemisphereLight, 5)} /> */}
+      <HemisphereLightHelperMesh />
     </Wrapper>
   )
 }
@@ -89,8 +87,7 @@ export function HemisphereLightHelper() {
 export function PlaneHelper() {
   return (
     <Wrapper>
-      <Mesh><boxGeometry /></Mesh>
-      {/* <primitive object={new THREE.PlaneHelper(plane, 5, 0xff0000)} /> */}
+      <PlaneHelperMesh />
     </Wrapper>
   )
 }
@@ -98,8 +95,7 @@ export function PlaneHelper() {
 export function PointLightHelper() {
   return (
     <Wrapper>
-      <Mesh><boxGeometry /></Mesh>
-      {/* <primitive object={new THREE.PointLightHelper(pointLight, 1)} /> */}
+      <PointLightHelperMesh />
     </Wrapper>
   )
 }
@@ -107,8 +103,7 @@ export function PointLightHelper() {
 export function SkeletonHelper() {
   return (
     <Wrapper>
-      <Mesh><boxGeometry /></Mesh>
-      {/* <primitive object={new THREE.SkeletonHelper(skinnedMesh)} /> */}
+      <SkeletonHelperMesh />
     </Wrapper>
   )
 }
@@ -116,8 +111,7 @@ export function SkeletonHelper() {
 export function SpotLightHelper() {
   return (
     <Wrapper>
-      <Mesh><boxGeometry /></Mesh>
-      {/* <primitive object={new THREE.SpotLightHelper(spotLight)} /> */}
+      <SpotLightHelperMesh />
     </Wrapper>
   )
 }
