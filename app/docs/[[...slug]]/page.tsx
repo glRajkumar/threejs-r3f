@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import dynamic from "next/dynamic";
 
 import { checkFileExists } from "@/utils/file-helper";
@@ -16,8 +17,9 @@ export async function generateStaticParams() {
 
 async function Page({ params }: props) {
   const slug = (await params).slug
+  if (!slug) return redirect("/docs/intro")
 
-  const filePath = `/components/docs/${slug.join("/")}/page.mdx`
+  const filePath = `/components/docs/${slug?.join("/")}/page.mdx`
   const isFileExists = await checkFileExists(filePath)
 
   if (!isFileExists) return <NotFound />
