@@ -1,0 +1,42 @@
+import { Boxes } from "./index";
+
+# Textures in Three.js
+
+Textures allow you to add rich detail to the surface of your 3D objects by mapping 2-dimensional images (or other data) onto their geometry. Instead of relying purely on vertex colors or materials, a texture can describe color, surface irregularities, light emission, transparency, and much more. This page covers the essentials of working with textures in both **Three.js** and **React-Three-Fiber (R3F)**, following the same structure as our *Geometries* guide.
+
+A texture is essentially a bitmap—PNG, JPEG, WebP, video frame, or even procedurally-generated data—that is sampled in the fragment shader to influence the final pixel color. In Three.js, every texture is an instance of `THREE.Texture` or one of its subclasses.
+
+## Loading a Texture
+
+###### Three.js Example
+```javascript
+import * as THREE from "three";
+
+const loader = new THREE.TextureLoader();
+loader.load("/textures/brick_diffuse.jpg", (texture) => {
+  const material = new THREE.MeshStandardMaterial({ map: texture });
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), material);
+  scene.add(mesh);
+});
+```
+
+###### React-Three-Fiber Example
+```jsx
+import { useTexture } from "@react-three/drei";
+
+function Boxes() {
+  const texture = useTexture("/textures/brick_diffuse.jpg");
+  return (
+    <mesh>
+      <boxGeometry args={[2, 2, 2]} />
+      <meshStandardMaterial map={texture} />
+    </mesh>
+  );
+}
+```
+
+<Boxes />
+
+---
+
+

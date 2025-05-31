@@ -8,7 +8,7 @@ type commonProps = {
   useDefaultMaterial?: boolean
 }
 
-export function Mesh({ children, useDefaultMaterial = true }: readOnlychild & commonProps) {
+export function useMesh() {
   const meshRef = useRef<ThreeMesh>(null)
 
   useFrame(() => {
@@ -17,6 +17,12 @@ export function Mesh({ children, useDefaultMaterial = true }: readOnlychild & co
       meshRef.current.rotation.x += 0.01
     }
   })
+
+  return meshRef
+}
+
+export function Mesh({ children, useDefaultMaterial = true }: readOnlychild & commonProps) {
+  const meshRef = useMesh()
 
   return (
     <mesh ref={meshRef}>
