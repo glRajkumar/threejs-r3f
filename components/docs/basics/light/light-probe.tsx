@@ -1,14 +1,15 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { useCubeTexture } from "@react-three/drei"
 import * as THREE from "three"
-import { Environment } from "@react-three/drei"
 import GUI from "lil-gui"
 
+import { LightProbeGenerator } from "three/addons/lights/LightProbeGenerator.js"
 import { LightProbeHelper } from "three/addons/helpers/LightProbeHelper.js"
 
-import { Box, Plane } from "./mesh"
 import { Wrapper } from "../wrapper"
+import { Plane } from "./mesh"
 
 function LightProbeMesh() {
   const probeRef = useRef<THREE.LightProbe>(null)
@@ -16,6 +17,15 @@ function LightProbeMesh() {
   const [showAmbient, setShowAmbient] = useState(true)
   const [showHelper, setShowHelper] = useState(true)
   const [intensity, setIntensity] = useState(1)
+
+  const cubeTexture = useCubeTexture([
+    "px.png",
+    "nx.png",
+    "py.png",
+    "ny.png",
+    "pz.png",
+    "nz.png"
+  ], { path: "/images/textures/pisa/" })
 
   useEffect(() => {
     const gui = new GUI({ container: document.getElementById("lightprobe-light")! })
@@ -33,6 +43,13 @@ function LightProbeMesh() {
   }, [])
 
   useEffect(() => {
+    if (probeRef.current) {
+      const generated = LightProbeGenerator.fromCubeTexture(cubeTexture)
+      probeRef.current.copy(generated)
+    }
+  }, [cubeTexture])
+
+  useEffect(() => {
     if (probeRef.current && showHelper) {
       const helper = new LightProbeHelper(probeRef.current)
       probeRef.current.add(helper)
@@ -46,10 +63,16 @@ function LightProbeMesh() {
 
   return (
     <>
-      <Box />
-      <Plane />
+      <mesh>
+        <boxGeometry />
+        <meshStandardMaterial
+          metalness={0}
+          roughness={0}
+          envMap={cubeTexture}
+        />
+      </mesh>
 
-      <Environment preset="sunset" />
+      <Plane />
 
       <lightProbe ref={probeRef} intensity={intensity} />
 
