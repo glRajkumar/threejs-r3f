@@ -231,3 +231,7 @@
     -moz-appearance: textfield;
   }
 }
+
+.canvas-wrapper > .lil-gui {
+  @apply absolute right-0 top-0;
+}

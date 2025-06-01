@@ -36,9 +36,9 @@ export function Mesh({ children, useDefaultMaterial = true }: readOnlychild & co
   )
 }
 
-export function Wrapper({ children, ...rest }: readOnlychild & CanvasProps) {
+export function Wrapper({ children, divId, ...rest }: readOnlychild & CanvasProps & { divId?: string }) {
   return (
-    <div className="h-96 border mt-4 rounded-lg shadow-sm">
+    <div className="canvas-wrapper h-96 border mt-4 rounded-lg shadow-sm relative" id={divId}>
       <Canvas {...rest}>
         {children}
       </Canvas>
