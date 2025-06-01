@@ -8,25 +8,29 @@ import GUI from "lil-gui"
 import { Box, Plane } from "./mesh"
 import { Wrapper } from "../wrapper"
 
-function DirectionalLightMesh() {
-  const directionalRef = useRef<THREE.DirectionalLight>(null)
+function HemisphereLightMesh() {
+  const hemisphereRef = useRef<THREE.HemisphereLight>(null)
 
-  const [showAmbient, setShowAmbient] = useState(true)
   const [showHelper, setShowHelper] = useState(true)
 
+  const [groundColor, setGroundColor] = useState("#f00")
   const [intensity, setIntensity] = useState(1)
-  const [position, setPosition] = useState<[number, number, number]>([4, 0.5, 0])
-  const [color, setColor] = useState("#f00")
+  const [skyColor, setSkyColor] = useState("#00f")
+  const [position, setPosition] = useState<postionTuple>([0, 2, 0])
 
-  useHelper(showHelper && directionalRef as React.RefObject<THREE.Object3D>, THREE.DirectionalLightHelper, 0.5)
+  useHelper(showHelper && hemisphereRef as React.RefObject<THREE.Object3D>, THREE.HemisphereLightHelper, 1)
 
   useEffect(() => {
-    const gui = new GUI({ container: document.getElementById("direactional-light")! })
-    const folder = gui.addFolder("Directional Light")
+    const gui = new GUI({ container: document.getElementById("hemisphere-light")! })
+    const folder = gui.addFolder("Hemisphere Light")
 
     folder
-      .addColor({ color }, "color")
-      .onChange(setColor)
+      .addColor({ skyColor }, "skyColor")
+      .onChange(setSkyColor)
+
+    folder
+      .addColor({ groundColor }, "groundColor")
+      .onChange(setGroundColor)
 
     folder.add({ intensity }, "intensity", 0, 10, 0.1)
       .onChange(setIntensity)
@@ -52,13 +56,9 @@ function DirectionalLightMesh() {
 
     folder.open()
 
-    const addFolder = gui.addFolder("Additionals")
-
-    addFolder.add({ showHelper }, "showHelper")
+    const additionalFolder = gui.addFolder("Additionals")
+    additionalFolder.add({ showHelper }, "showHelper")
       .onChange(setShowHelper)
-
-    addFolder.add({ showAmbient }, "showAmbient")
-      .onChange(setShowAmbient)
 
     return () => {
       gui.destroy()
@@ -70,21 +70,19 @@ function DirectionalLightMesh() {
       <Box />
       <Plane />
 
-      <directionalLight
-        ref={directionalRef}
-        args={[color, intensity]}
+      <hemisphereLight
+        ref={hemisphereRef}
+        args={[skyColor, groundColor, intensity]}
         position={position}
       />
-
-      {showAmbient && <ambientLight />}
     </>
   )
 }
 
-export function DirectionalLight() {
+export function HemisphereLight() {
   return (
-    <Wrapper divId="direactional-light">
-      <DirectionalLightMesh />
+    <Wrapper divId="hemisphere-light">
+      <HemisphereLightMesh />
     </Wrapper>
   )
 }
