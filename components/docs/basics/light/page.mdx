@@ -1,4 +1,4 @@
-import { AmbientLight, DirectionalLight, HemisphereLight, LightProbe, PointLight, RectAreaLight, SpotLight } from "./index";
+import { AmbientLight, DirectionalLight, HemisphereLight, LightProbe, PointLight, RectAreaLight, SpotLight } from "./index"
 
 # Three.js Lights
 Lighting in Three.js and React-Three-Fiber is essential for creating realistic and visually appealing 3D scenes. Various types of lights provide different effects and interactions with materials.
@@ -8,126 +8,225 @@ Lighting in Three.js and React-Three-Fiber is essential for creating realistic a
 The `Light` class is the base for all lights in Three.js. It is not used directly.
 
 ```javascript
-const light = new THREE.Light(0xffffff, 1);
+const light = new THREE.Light(0xffffff, 1)
 ```
 
 ## 2. AmbientLight
-A global light that affects all objects equally.
+This light globally illuminates all objects in the scene equally. 
+
+This light cannot be used to cast shadows as it does not have a direction.
+
+```javascript
+AmbientLight(Color?: 0xffffff, intensity?: 1)
+```
 
 ###### Three.js Example
 ```javascript
-const light = new THREE.AmbientLight(0xffffff, 0.5);
-scene.add(light);
+const light = new THREE.AmbientLight("red", 0.5)
+scene.add(light)
 ```
 
 ###### React-Three-Fiber Example
 ```jsx
-<ambientLight intensity={0.5} />
+<ambientLight args={["red", 0.5]} />
 ```
 
 <AmbientLight />
 
 
 ## 3. DirectionalLight
-A light source that acts like the sun, with parallel rays.
+A light that gets emitted in a specific direction. This light will behave as though it is infinitely far away and the rays produced from it are all parallel. The common use case for this is to simulate daylight the sun is far enough away that its position can be considered to be infinite, and all light rays coming from it are parallel.
+
+Can cast shadows and rotation has no effect.
+
+```javascript
+DirectionalLight(color?: 0xffffff, intensity?: 1)
+```
 
 ###### Three.js Example
 ```javascript
-const light = new THREE.DirectionalLight(0xffffff, 1);
-light.position.set(5, 10, 5);
-scene.add(light);
+const light = new THREE.DirectionalLight(0xff0000, 0.8)
+light.position.set(5, 10, 5)
+scene.add(light)
 ```
 
 ###### React-Three-Fiber Example
 ```jsx
-<directionalLight position={[5, 10, 5]} intensity={1} />
+<directionalLight args={[0xff0000, 0.8]} position={[5, 10, 5]} />
 ```
 
 <DirectionalLight />
 
 
 ## 4. HemisphereLight
-A gradient-based light that simulates a sky dome.
+A light source positioned directly above the scene, with color fading from the sky color to the ground color.
+
+This light cannot be used to cast shadows.
+
+```javascript
+HemisphereLight(skyColor?: 0xffffff, groundColor?: 0xffffff, intensity?: 1)
+```
 
 ###### Three.js Example
 ```javascript
-const light = new THREE.HemisphereLight(0x4040ff, 0x80ff80, 0.6);
-scene.add(light);
+const light = new THREE.HemisphereLight(0x4040ff, 0x80ff80, 0.6)
+scene.add(light)
 ```
 
 ###### React-Three-Fiber Example
 ```jsx
-<hemisphereLight groundColor="green" intensity={0.6} />
+<hemisphereLight args={[0x4040ff, 0x80ff80, 0.6]} />
 ```
 
 <HemisphereLight />
 
 
 ## 5. LightProbe
-Used for advanced global illumination techniques.
+Light probes are an alternative way of adding light to a 3D scene. Unlike classical light sources (e.g. directional, point or spot lights), light probes do not emit light. Instead they store information about light passing through 3D space. During rendering, the light that hits a 3D object is approximated by using the data from the light probe. Light probes are usually created from (radiance) environment maps.
+
+```javascript
+LightProbe(sh?: SphericalHarmonics3, intensity?: 1)
+```
+
+SphericalHarmonics3: Represents a third-order spherical harmonics (SH).
 
 ###### Three.js Example
 ```javascript
-const lightProbe = new THREE.LightProbe();
-scene.add(lightProbe);
+import { LightProbeGenerator } from 'three/addons/lights/LightProbeGenerator.js'
+
+const lightProbe = new THREE.LightProbe()
+scene.add(lightProbe)
+
+new THREE.CubeTextureLoader().load(urls, function (cubeTexture) {
+  scene.background = cubeTexture
+  lightProbe.copy(LightProbeGenerator.fromCubeTexture(cubeTexture))
+  lightProbe.intensity = 0.6
+
+  const geometry = new THREE.BoxGeometry()
+  
+  const material = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    metalness: 0,
+    roughness: 0,
+    envMap: cubeTexture,
+  })
+
+  mesh = new THREE.Mesh(geometry, material)
+  scene.add(mesh)
+})
 ```
 
 ###### React-Three-Fiber Example
 ```jsx
-<lightProbe />
+import { LightProbeGenerator } from "three/addons/lights/LightProbeGenerator.js"
+import { useCubeTexture } from "@react-three/drei"
+
+const cubeTexture = useCubeTexture([
+  "px.png",
+  "nx.png",
+  "py.png",
+  "ny.png",
+  "pz.png",
+  "nz.png"
+], { path: "/images/textures/pisa/" })
+
+useEffect(() => {
+  if (probeRef.current) {
+    const generated = LightProbeGenerator.fromCubeTexture(cubeTexture)
+    probeRef.current.copy(generated)
+  }
+}, [cubeTexture])
+
+<mesh>
+  <boxGeometry />
+  <meshStandardMaterial
+    metalness={0}
+    roughness={0}
+    envMap={cubeTexture}
+  />
+</mesh>
+
+<lightProbe intensity={0.6} />
 ```
 
 <LightProbe />
 
 
 ## 6. PointLight
-A light that emits in all directions from a single point.
+A light that gets emitted from a single point in all directions. A common use case for this is to replicate the light emitted from a bare lightbulb.
+
+Can cast shadows.
+
+```javascript
+PointLight(color?: 0xffffff, intensity?: 1, distance?: 0, decay?: 2)
+```
+
+distance - Maximum range of the light. 
+decay - The amount the light dims along the distance of the light.
 
 ###### Three.js Example
 ```javascript
-const light = new THREE.PointLight(0xff0000, 1, 10);
-light.position.set(2, 3, 2);
-scene.add(light);
+const light = new THREE.PointLight(0xff0000, 1, 10)
+light.position.set(2, 3, 2)
+scene.add(light)
 ```
 
 ###### React-Three-Fiber Example
 ```jsx
-<pointLight position={[2, 3, 2]} intensity={1} distance={10} color="red" />
+<pointLight args={[0xff0000, 1, 10]} position={[2, 3, 2]} />
 ```
 
 <PointLight />
 
 
 ## 7. RectAreaLight
-A light that emits from a rectangular area.
+RectAreaLight emits light uniformly across the face a rectangular plane. This light type can be used to simulate light sources such as bright windows or strip lighting.
+
+This light cannot be used to cast shadows.
+
+Only `MeshStandardMaterial` and `MeshPhysicalMaterial` are supported
+
+```javascript
+RectAreaLight(color?: 0xffffff, intensity?: 1, width?: 10, height?: 10)
+```
 
 ###### Three.js Example
 ```javascript
-const rectLight = new THREE.RectAreaLight(0xffffff, 2, 4, 2);
-scene.add(rectLight);
+const rectLight = new THREE.RectAreaLight(0xffffff, 2, 4, 2)
+scene.add(rectLight)
 ```
 
 ###### React-Three-Fiber Example
 ```jsx
-<rectAreaLight width={4} height={2} intensity={2} color="white" />
+<rectAreaLight args={[0xffffff, 2, 4, 2]} />
 ```
 
 <RectAreaLight />
 
 
 ## 8. SpotLight
-A light that emits in a specific direction with a conical effect.
+This light gets emitted from a single point in one direction, along a cone that increases in size the further from the light it gets.
+
+Can cast shadows.
+
+```javascript
+SpotLight(color?: 0xffffff, intensity?: 1, distance?: 0, angle?: Math.PI/3, penumbra?: 1, decay?: 2)
+```
+
+angle - Maximum angle of light dispersion from its direction whose upper bound is Math.PI/2.
+penumbra - Percent of the spotlight cone that is attenuated due to penumbra. Takes values between zero and 1. 
+decay - The amount the light dims along the distance of the light.
 
 ###### Three.js Example
 ```javascript
-const light = new THREE.SpotLight(0xffffff, 1);
-light.position.set(5, 10, 5);
-scene.add(light);
+const light = new THREE.SpotLight(0xff0000, 0.6)
+light.position.set(5, 10, 5)
+scene.add(light)
 ```
 
 ###### React-Three-Fiber Example
 ```jsx
-<spotLight position={[5, 10, 5]} intensity={1} />
+<spotLight args={[0xff0000, 0.6]} position={[5, 10, 5]} />
 ```
 
 <SpotLight />
@@ -142,6 +241,4 @@ scene.add(light);
 - **PointLight**: Emits light in all directions from a single point.
 - **RectAreaLight**: Emits light from a rectangular area.
 - **SpotLight**: Emits a focused beam in one direction.
-
-Each light type offers different properties to enhance the visual appeal of 3D scenes. 🚀
 

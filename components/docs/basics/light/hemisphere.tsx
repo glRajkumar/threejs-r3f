@@ -54,11 +54,11 @@ function HemisphereLightMesh() {
         setPosition(([x, y, _]) => [x, y, v])
       )
 
-    folder.open()
-
     const additionalFolder = gui.addFolder("Additionals")
     additionalFolder.add({ showHelper }, "showHelper")
       .onChange(setShowHelper)
+
+    gui.close()
 
     return () => {
       gui.destroy()

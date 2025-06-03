@@ -66,7 +66,7 @@ function RectAreaLightMesh() {
     additionalFolder.add({ showHelper }, "showHelper").onChange(setShowHelper)
     additionalFolder.add({ showAmbient }, "showAmbient").onChange(setShowAmbient)
 
-    folder.open()
+    gui.close()
 
     return () => gui.destroy()
   }, [])

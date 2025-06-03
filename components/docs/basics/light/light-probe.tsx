@@ -1,12 +1,11 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { LightProbeGenerator } from "three/addons/lights/LightProbeGenerator.js"
+import { LightProbeHelper } from "three/addons/helpers/LightProbeHelper.js"
 import { useCubeTexture } from "@react-three/drei"
 import * as THREE from "three"
 import GUI from "lil-gui"
-
-import { LightProbeGenerator } from "three/addons/lights/LightProbeGenerator.js"
-import { LightProbeHelper } from "three/addons/helpers/LightProbeHelper.js"
 
 import { Wrapper } from "../wrapper"
 import { Plane } from "./mesh"
@@ -37,7 +36,7 @@ function LightProbeMesh() {
     extra.add({ showAmbient }, "showAmbient").onChange(setShowAmbient)
     extra.add({ showHelper }, "showHelper").onChange(setShowHelper)
 
-    folder.open()
+    gui.close()
 
     return () => gui.destroy()
   }, [])

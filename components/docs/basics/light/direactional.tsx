@@ -50,8 +50,6 @@ function DirectionalLightMesh() {
         setPosition(([x, y, _]) => [x, y, v])
       )
 
-    folder.open()
-
     const addFolder = gui.addFolder("Additionals")
 
     addFolder.add({ showHelper }, "showHelper")
@@ -59,6 +57,8 @@ function DirectionalLightMesh() {
 
     addFolder.add({ showAmbient }, "showAmbient")
       .onChange(setShowAmbient)
+
+    gui.close()
 
     return () => {
       gui.destroy()

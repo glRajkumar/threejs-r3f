@@ -24,7 +24,7 @@ function AmbientLightMesh() {
     folder.add({ intensity }, "intensity", 0, 10, 0.1)
       .onChange(setIntensity)
 
-    folder.open()
+    gui.close()
 
     return () => {
       gui.destroy()
