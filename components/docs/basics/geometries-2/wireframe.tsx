@@ -8,8 +8,10 @@ export function Wireframe() {
   return (
     <Wrapper>
       <Mesh useDefaultMaterial={false}>
-        <wireframeGeometry args={[new THREE.BoxGeometry(1, 1, 1)]} />
-        <lineBasicMaterial color="#14b8a6" />
+        <lineSegments>
+          <wireframeGeometry args={[new THREE.BoxGeometry(1, 1, 1)]} />
+          <lineBasicMaterial color="#14b8a6" />
+        </lineSegments>
       </Mesh>
     </Wrapper>
   )
