@@ -9,7 +9,9 @@ export function Capsule() {
   const [height, setHeight] = useState(1)
   const [capSegments, setCapSegments] = useState(4)
   const [radialSegments, setRadialSegments] = useState(8)
-  const [heightSegments, setHeightSegments] = useState(1)
+  // const [heightSegments, setHeightSegments] = useState(1)
+
+  const [showWireframe, setShowWireframe] = useState(false)
 
   useEffect(() => {
     const gui = new GUI({ container: document.getElementById("capsule")! })
@@ -19,15 +21,19 @@ export function Capsule() {
     folder.add({ height }, "height", 0.1, 5, 0.1).onChange(setHeight)
     folder.add({ capSegments }, "capSegments", 1, 16, 1).onChange(setCapSegments)
     folder.add({ radialSegments }, "radialSegments", 3, 32, 1).onChange(setRadialSegments)
-    folder.add({ heightSegments }, "heightSegments", 1, 10, 1).onChange(setHeightSegments)
+    // folder.add({ heightSegments }, "heightSegments", 1, 10, 1).onChange(setHeightSegments)
+
+    const additionalFolder = gui.addFolder("Additionals")
+    additionalFolder.add({ showWireframe }, "showWireframe").onChange(setShowWireframe)
 
     gui.close()
+
     return () => gui.destroy()
   }, [])
 
   return (
     <Wrapper divId="capsule">
-      <Mesh>
+      <Mesh useDefaultMaterial={false}>
         <capsuleGeometry
           args={[
             radius,
@@ -37,7 +43,11 @@ export function Capsule() {
             // heightSegments
           ]}
         />
-        <meshStandardMaterial color="lightseagreen" />
+
+        <meshBasicMaterial
+          color="#14b8a6"
+          wireframe={showWireframe}
+        />
       </Mesh>
     </Wrapper>
   )
