@@ -80,6 +80,8 @@ Creates a geometry representing edges only.
 ```ts
 EdgesGeometry(geometry: BufferGeometry, thresholdAngle?: 1)
 ```
+geometry — Any geometry object.
+thresholdAngle — An edge is only rendered if the angle (in degrees) between the face normals of the adjoining faces exceeds this value.
 
 ###### Three.js Example
 
@@ -98,6 +100,18 @@ const line = new THREE.LineSegments(edgeGeometry, material)
   <lineBasicMaterial color="red" />
 </lineSegments>
 ```
+
+or
+
+```jsx
+import { Edges } from '@react-three/drei'
+
+<mesh>
+  <boxGeometry />
+  <Edges />
+</mesh>
+```
+
 
 <Edges />
 

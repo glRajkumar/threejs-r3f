@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import GUI from "lil-gui"
+
 import { Wrapper, Mesh } from "../wrapper"
 
 export function Capsule() {
