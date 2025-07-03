@@ -1,4 +1,4 @@
-import { PerspectiveCamera, OrthographicCameraExample, CubeCameraExample } from "./index";
+import { Perspective, Orthographic, Cube, Array, Stereo } from "./index";
 
 # Three.js Cameras
 Cameras in Three.js define the point of view from which a scene is rendered. Different types of cameras allow for various perspectives and effects.
@@ -56,7 +56,7 @@ export default function PerspectiveCamera() {
 }
 ```
 
-<PerspectiveCamera />
+<Perspective />
 
 
 ## 3. OrthographicCamera
@@ -109,7 +109,7 @@ export default function OrthographicCameraExample() {
 }
 ```
 
-<OrthographicCameraExample />
+<Orthographic />
 
 
 ## 4. CubeCamera
@@ -140,7 +140,7 @@ function CubeCameraExample() {
 }
 ```
 
-<CubeCameraExample />
+<Cube />
 
 
 ## 5. ArrayCamera
@@ -244,6 +244,9 @@ function ArrayCameraExample() {
 }
 ```
 
+<Array />
+
+
 ## 6. StereoCamera
 Renders scenes for stereoscopic (3D) effects. The StereoCamera in Three.js creates a stereoscopic effect for VR or 3D anaglyph rendering.
 
@@ -312,6 +315,7 @@ function StereoCameraExample() {
 }
 ```
 
+<Stereo />
 
 ## Summary
 - **PerspectiveCamera**: Ideal for realistic 3D scenes with perspective.
