@@ -52,7 +52,6 @@ export function Cube() {
               metalness={metalness}
               roughness={roughness}
               envMapIntensity={1}
-              transparent
             />
           </mesh>
         )}

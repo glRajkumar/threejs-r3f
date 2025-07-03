@@ -11,7 +11,6 @@ function Scene() {
 
   useEffect(() => {
     const camera = new THREE.StereoCamera()
-    camera.eyeSep = 0.064
     stereoCameraRef.current = camera
   }, [])
 

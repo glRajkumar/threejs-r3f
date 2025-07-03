@@ -1,12 +1,11 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { PerspectiveCamera, } from "@react-three/drei"
+import { PerspectiveCamera, useHelper } from "@react-three/drei"
 import * as THREE from "three"
 import GUI from "lil-gui"
 
 import { Wrapper, Mesh } from "../wrapper"
-import { useHelper } from "@react-three/drei"
 
 function Camera() {
   const [fov, setFov] = useState(75)
