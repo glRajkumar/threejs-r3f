@@ -1,4 +1,4 @@
-import { getSlugsArr, Slug } from "@/utils/slugs-helper"
+import { getSlugsArr, Slug } from "@/utils/slugs-helper";
 
 export const slugs: Slug[] = [
   {

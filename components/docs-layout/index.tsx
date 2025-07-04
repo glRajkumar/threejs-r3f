@@ -4,7 +4,11 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import AppSidebar from "./sidebar";
 import DocNavbar from "./navbar";
 
-function DocsLayout({ children, title, ...rest }: readOnlychild & appProps) {
+type props = {
+  className?: string
+} & readOnlychild & appProps
+
+function DocsLayout({ children, title, className, ...rest }: props) {
   return (
     <SidebarProvider>
       <AppSidebar
