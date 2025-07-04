@@ -14,6 +14,7 @@ type itemProps = {
 }
 
 type MenuItemProps = itemProps & {
+  root: string
   pathname: string
   children?: itemProps[]
 }
@@ -34,14 +35,14 @@ function Item({ title, href, pathname }: itemProps & { pathname: string }) {
   )
 }
 
-function MenuItem({ title, href, children, pathname }: MenuItemProps) {
+function MenuItem({ root, title, href, children, pathname }: MenuItemProps) {
   if (!children) {
     return (
       <SidebarGroup className='py-0'>
         <SidebarMenu>
           <Item
             title={title}
-            href={`/docs/${href}`}
+            href={`/${root}/${href}`}
             pathname={pathname}
           />
         </SidebarMenu>
@@ -62,7 +63,7 @@ function MenuItem({ title, href, children, pathname }: MenuItemProps) {
               children.map(child => (
                 <Item
                   key={child.title}
-                  href={`/docs/${href}/${child.href}`}
+                  href={`/${root}/${href}/${child.href}`}
                   title={child.title}
                   pathname={pathname}
                 />

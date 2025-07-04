@@ -1,9 +1,4 @@
-
-interface Slug {
-  title: string;
-  href: string;
-  children?: Slug[];
-}
+import { getSlugsArr, Slug } from "@/utils/slugs-helper"
 
 export const slugs: Slug[] = [
   {
@@ -54,15 +49,4 @@ export const slugs: Slug[] = [
   },
 ]
 
-const getSlugs = (items: Slug[], parentPath: string[] = []): string[][] => {
-  return items.reduce<string[][]>((acc, item) => {
-    const fullPath = [...parentPath, item.href]
-    acc.push(fullPath)
-    if (item.children) {
-      acc.push(...getSlugs(item.children, fullPath))
-    }
-    return acc
-  }, []);
-};
-
-export const staticSlugs = getSlugs(slugs)
+export const staticSlugs = getSlugsArr(slugs)

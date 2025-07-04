@@ -2,6 +2,8 @@
 
 import { usePathname } from "next/navigation";
 
+import type { appProps } from "../types";
+
 import {
   Sidebar,
   SidebarContent,
@@ -10,17 +12,16 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
-import { slugs } from "../slugs";
 import MenuItem from "./menu";
 
-function AppSidebar() {
+function DocsSidebar({ slugs, root, title }: appProps) {
   const pathname = usePathname()
 
   return (
     <Sidebar className="border-r">
       <SidebarHeader>
         <SidebarMenu className="pl-2 pt-2 text-sm font-bold">
-          Threejs + R3F
+          {title}
         </SidebarMenu>
       </SidebarHeader>
 
@@ -30,6 +31,7 @@ function AppSidebar() {
             <MenuItem
               {...item}
               key={item.title}
+              root={root}
               pathname={pathname}
             />
           ))
@@ -41,4 +43,4 @@ function AppSidebar() {
   )
 }
 
-export default AppSidebar
+export default DocsSidebar
