@@ -1,6 +1,7 @@
 import { getFileContent } from "@/utils/file-helper";
 import { highlightCode } from "@/lib/highlight-code";
 import { cn } from "@/lib/utils";
+import CopyCode from "./copy-code";
 
 type BaseProps = {
   className?: string
@@ -28,10 +29,14 @@ async function CodeBlock({ className = "", ...rest }: props) {
   const highlightedCode = await highlightCode(data.content, data.fileName.split(".").pop() || data.fileName)
 
   return (
-    <div
-      dangerouslySetInnerHTML={{ __html: highlightedCode }}
-      className={cn("[&_pre]:p-4 [&_pre]:rounded-md", className)}
-    />
+    <div className="relative isolate group">
+      <CopyCode content={data.content} />
+
+      <div
+        dangerouslySetInnerHTML={{ __html: highlightedCode }}
+        className={cn("[&_pre]:p-4 [&_pre]:rounded-md relative", className)}
+      />
+    </div>
   )
 }
 
