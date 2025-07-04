@@ -57,8 +57,7 @@ export async function getFolderContents(folderPath: string): Promise<fileT[]> {
   const fileContents = await Promise.all(
     files.map(async (currFile) => {
       const filePath = path.join(folderPath, currFile)
-      const { content, fileName, relativePath } = await getFileContent(filePath)
-      return { fileName, content, relativePath }
+      return await getFileContent(filePath)
     })
   )
 
@@ -79,8 +78,8 @@ export async function getContents(paths: string[]): Promise<fileT[]> {
         results.push(...folderContents)
 
       } else if (stats.isFile()) {
-        const { content, fileName, relativePath } = await getFileContent(filePath)
-        results.push({ fileName, content, relativePath })
+        const data = await getFileContent(filePath)
+        results.push(data)
 
       } else {
         console.warn(`Skipping ${absolutePath}: Neither a file nor a directory`)
@@ -92,4 +91,35 @@ export async function getContents(paths: string[]): Promise<fileT[]> {
   }
 
   return results
+}
+
+type fileTreeT = {
+  name: string
+  relativePath: string
+  type: 'file' | 'folder'
+  children?: fileTreeT[]
+}
+
+export async function getFileTree(folderPath: string): Promise<fileTreeT[]> {
+  const absolutePath = path.join(process.cwd(), folderPath)
+  const entries = await fs.readdir(absolutePath, { withFileTypes: true })
+
+  const fileTree: fileTreeT[] = []
+
+  for (const entry of entries) {
+    const entryPath = path.join(folderPath, entry.name)
+    const item: Partial<fileTreeT> = {
+      name: entry.name,
+      type: entry.isDirectory() ? 'folder' : 'file',
+      relativePath: entryPath,
+    }
+
+    if (entry.isDirectory()) {
+      item.children = await getFileTree(entryPath)
+    }
+
+    fileTree.push(item as fileTreeT)
+  }
+
+  return fileTree
 }

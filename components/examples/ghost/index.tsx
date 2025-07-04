@@ -1,11 +1,24 @@
-import { getFilesInFolder } from "@/utils/file-helper";
-import CodeList from "@/components/ui/code-list";
+"use client"
 
-async function Ghost() {
-  const files = await getFilesInFolder("components")
+import { useEffect, useState } from "react"
+
+function Ghost() {
+  const [st, setSt] = useState(1)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setSt(p => p + 1)
+    }, 1000)
+
+    return () => {
+      clearInterval(id)
+    }
+  }, [])
 
   return (
-    <CodeList files={files} />
+    <div>
+      jkgjgjjk {st}
+    </div>
   )
 }
 

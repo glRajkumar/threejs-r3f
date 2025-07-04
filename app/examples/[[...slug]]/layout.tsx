@@ -8,6 +8,7 @@ function RootLayout({ children }: readOnlychild) {
       title="Examplse"
       root="examples"
       slugs={slugs}
+      className="not-prose"
     >
       {children}
     </DocsLayout>

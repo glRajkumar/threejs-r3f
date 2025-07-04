@@ -1,5 +1,6 @@
 import { getFileContent } from "@/utils/file-helper";
 import { highlightCode } from "@/lib/highlight-code";
+import { cn } from "@/lib/utils";
 
 type BaseProps = {
   className?: string
@@ -29,7 +30,7 @@ async function CodeBlock({ className = "", ...rest }: props) {
   return (
     <div
       dangerouslySetInnerHTML={{ __html: highlightedCode }}
-      className={className}
+      className={cn("[&_pre]:p-4 [&_pre]:rounded-md", className)}
     />
   )
 }
