@@ -1,10 +1,12 @@
+import { getFilesInFolder } from "@/utils/file-helper";
+import CodeList from "@/components/ui/code-list";
 
-function Index() {
+async function Ghost() {
+  const files = await getFilesInFolder("components")
+
   return (
-    <div>
-      I am ghost
-    </div>
+    <CodeList files={files} />
   )
 }
 
-export default Index
+export default Ghost

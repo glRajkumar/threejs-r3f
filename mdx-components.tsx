@@ -3,7 +3,7 @@ import type { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 
-import { highlightCode } from './lib/highlight-code';
+import CodeBlock from './components/ui/code-block';
 
 type TableProps = {
   data: {
@@ -107,15 +107,15 @@ const customComponents = {
   a: CustomLink,
   Table,
   pre: ({ children }: readOnlychild) => <div className="overflow-x-auto">{children}</div>,
-  code: async ({ className, children }: { className?: string } & readOnlychild) => {
+  code: ({ className, children }: { className?: string } & readOnlychild) => {
     const match = /language-(\w+)/.exec(className || '')
 
     if (match) {
-      const highlightedCode = await highlightCode(String(children).replace(/\n$/, ''), match?.[1])
       return (
-        <div
-          dangerouslySetInnerHTML={{ __html: highlightedCode }}
+        <CodeBlock
           className='[&_pre]:text-base [&_pre]:mt-0 [&_pre]:mb-1 [&_pre]:px-5 [&_pre]:py-2.5 [&_pre]:rounded-md'
+          content={String(children).replace(/\n$/, '')}
+          fileName={match?.[1]}
         />
       )
     }
