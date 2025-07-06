@@ -2,8 +2,8 @@ import { getSlugsArr, Slug } from "@/utils/slugs-helper";
 
 export const slugs: Slug[] = [
   {
-    title: "Ghost",
-    href: "ghost",
+    title: "Haunted House",
+    href: "haunted-house",
   },
 ]
 

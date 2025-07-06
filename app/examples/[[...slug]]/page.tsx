@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 async function Page({ params }: props) {
   const slug = (await params).slug
-  if (!slug) return redirect("/" + staticSlugs?.[0]?.join("/"))
+  if (!slug) return redirect("/examples/" + staticSlugs?.[0]?.join("/"))
 
   const root = `/components/examples/${slug?.join("/")}`
   const filePath = `${root}/index.tsx`
