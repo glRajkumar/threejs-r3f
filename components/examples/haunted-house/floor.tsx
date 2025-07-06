@@ -15,7 +15,7 @@ function Floor() {
   })
 
   return (
-    <mesh rotation-x={-Math.PI / 2}>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow>
       <planeGeometry args={[20, 20]} />
       <meshStandardMaterial {...textures} />
     </mesh>
@@ -45,7 +45,7 @@ function Floor() {
   grassColor.wrapT = grassAO.wrapT = grassNormal.wrapT = grassRoughness.wrapT = THREE.RepeatWrapping
 
   return (
-    <mesh rotation-x={-Math.PI / 2}>
+    <mesh rotation-x={-Math.PI / 2} receiveShadow>
       <planeGeometry args={[20, 20]} />
       <meshStandardMaterial
         map={grassColor}

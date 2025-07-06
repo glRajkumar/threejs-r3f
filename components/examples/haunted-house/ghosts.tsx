@@ -31,9 +31,9 @@ function Ghosts() {
 
   return (
     <>
-      <pointLight ref={ghost1} args={["#ff00ff", 3, 3]} />
-      <pointLight ref={ghost2} args={["#00ffff", 3, 3]} />
-      <pointLight ref={ghost3} args={["#ff7800", 3, 3]} />
+      <pointLight ref={ghost1} args={["#ff00ff", 3, 3]} castShadow shadow-mapSize-width={256} shadow-mapSize-height={256} shadow-camera-far={7} />
+      <pointLight ref={ghost2} args={["#00ffff", 3, 3]} castShadow shadow-mapSize-width={256} shadow-mapSize-height={256} shadow-camera-far={7} />
+      <pointLight ref={ghost3} args={["#ff7800", 3, 3]} castShadow shadow-mapSize-width={256} shadow-mapSize-height={256} shadow-camera-far={7} />
     </>
   )
 }

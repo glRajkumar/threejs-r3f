@@ -11,7 +11,11 @@ function Lights() {
 
       <directionalLight
         position={[0, 0, 6]}
-        args={["#b9d5ff", 1]}
+        args={["#b9d5ff", 0.15]}
+        castShadow
+        shadow-mapSize-width={256}
+        shadow-mapSize-height={256}
+        shadow-camera-far={15}
       />
 
       {/* at door top */}

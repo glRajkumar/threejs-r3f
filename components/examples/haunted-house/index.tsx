@@ -23,8 +23,12 @@ function Scene() {
 
 function HauntedHouse() {
   return (
-    <div className='md:-m-8 h-screen bg-black/90'>
-      <Canvas camera={{ position: [0, 0, 20], fov: 75 }}>
+    <div className='-m-6 md:-m-8 h-screen bg-black/90'>
+      <Canvas
+        shadows
+        gl={{ antialias: true }}
+        camera={{ position: [0, 0, 20], fov: 75 }}
+      >
         <OrbitControls enableDamping />
         <Scene />
       </Canvas>

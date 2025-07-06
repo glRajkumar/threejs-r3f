@@ -10,7 +10,7 @@ function Graves() {
     const rotY = (Math.random() - 0.5) * 0.4
 
     return (
-      <mesh key={i} position={[x, y, z]} rotation={[0, rotY, rotZ]}>
+      <mesh key={i} position={[x, y, z]} rotation={[0, rotY, rotZ]} castShadow>
         <boxGeometry args={[0.6, 0.8, 0.1]} />
         <meshStandardMaterial color="#727272" />
       </mesh>
