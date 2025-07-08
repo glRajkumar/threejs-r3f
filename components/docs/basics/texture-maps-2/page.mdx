@@ -1,0 +1,98 @@
+# Advanced Texture Maps in Three.js
+
+## 1. `gradientMap`
+
+* **Used only with:** `MeshToonMaterial`
+* Used for toon shading; maps brightness to gradient.
+* It's required to set `Texture.minFilter` and `Texture.magFilter` to `THREE.NearestFilter` when using this type of texture.
+* Must be a 1D grayscale texture (e.g., 8x1) with nearest filter for toon effect.
+
+---
+
+### Following maps are only effective with `MeshPhysicalMaterial`
+
+## 2. `anisotropyMap` *(Custom/ShaderMaterial)*
+
+* `Anisotropy` is the property of a material or substance to exhibit different physical properties when measured along different directions. This means that the characteristics of anisotropic materials vary based on the direction of measurement.
+* Red and green channels represent the anisotropy direction in [-1, 1] tangent, bitangent space, to be rotated by `.anisotropyRotation`. The blue channel contains strength as [0, 1] to be multiplied by `.anisotropy`.
+* Simulates anisotropic surface reflections (like brushed metal).
+* **Note:** Not natively supported in built-in materials; requires shader material or extensions like OSL/GLSL or post-processing.
+* Requires custom shader setup or extensions like `MeshAnisotropyMaterial` from third-party libs.
+
+---
+
+## 3. `clearcoatMap`
+
+* `Clear coat` represents the intensity of the clear coat layer, from 0.0 to 1.0 and is to enable multilayer materials that have a thin translucent layer over the base layer.
+* The red channel of this texture is multiplied against `.clearcoat`, for per-pixel control over a coating's intensity
+
+---
+
+## 4. `clearcoatNormalMap`
+
+* Can be used to enable independent normals for the clear coat layer
+
+---
+
+## 5. `clearcoatRoughnessMap`
+
+* Roughness of the clear coat layer, from 0.0 to 1.0.
+* The green channel of this texture is multiplied against `.clearcoatRoughness`, for per-pixel control over a coating's roughness. 
+
+---
+
+## 6. `iridescenceMap`
+
+* `Iridescence` is the phenomenon of certain surfaces that appear gradually to change colour as the angle of view or the angle of illumination changes
+* Controls the presence of iridescence (color shifts like soap bubbles).
+* The red channel of this texture is multiplied against `.iridescence`, for per-pixel control over iridescence.
+
+---
+
+## 7. `iridescenceThicknessMap`
+
+* Controls the thickness of the iridescence layer, affecting how colors shift.
+* A texture that defines the thickness of the iridescence layer, stored in the green channel.
+
+---
+
+## 8. `sheenRoughnessMap`
+
+* `Sheen` is a soft lustre on a surface.
+* The alpha channel of this texture is multiplied against `.sheenRoughness`, for per-pixel control over sheen roughness.
+
+---
+
+## 9. `sheenColorMap`
+
+* The RGB channels of this texture are multiplied against `.sheenColor`, for per-pixel control over sheen tint.
+
+---
+
+## 10. `specularIntensityMap`
+
+* The alpha channel of this texture is multiplied against `.specularIntensity`, for per-pixel control over specular intensity.
+
+---
+
+## 11. `specularColorMap`
+
+* Specifies the RGB color of specular reflections.
+* The RGB channels of this texture are multiplied against .specularColor, for per-pixel control over specular color. 
+
+---
+
+## 12. `thicknessMap`
+
+* Controls the thickness of a transparent object, affecting how light refracts.
+* A texture that defines the thickness, stored in the green channel.
+
+---
+
+## 13. `transmissionMap`
+
+* Controls areas that allow light to pass through (like glass).
+* The red channel of this texture is multiplied against `.transmission`, for per-pixel control over optical transparency.
+
+---
+

@@ -38,6 +38,14 @@ export const slugs: Slug[] = [
         href: "texture",
       },
       {
+        title: "Texture-Mapping Part 1",
+        href: "texture-maps-1",
+      },
+      {
+        title: "Texture-Mapping Part 2",
+        href: "texture-maps-2",
+      },
+      {
         title: "Shadow",
         href: "shadow",
       },
