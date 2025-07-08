@@ -1,4 +1,4 @@
-import { MeshBasicMaterial, LineBasicMaterial, LineDashedMaterial, MeshStandardMaterial, MeshDepthMaterial, MeshDistanceMaterial, MeshLambertMaterial, MeshMatcapMaterial, MeshNormalMaterial, MeshPhongMaterial } from "./index";
+import { Basic, LineBasicMaterial, LineDashedMaterial, MeshStandardMaterial, MeshDepthMaterial, MeshDistanceMaterial, MeshLambertMaterial, MeshMatcapMaterial, MeshNormalMaterial, MeshPhongMaterial } from "./index";
 
 # Three.js Materials
 
@@ -7,7 +7,7 @@ A basic material without lighting effects.
 
 ###### Three.js Example
 ```javascript
-const material = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: true });
+const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
@@ -25,7 +25,7 @@ function MeshBasicMaterial() {
 }
 ```
 
-<MeshBasicMaterial />
+<Basic />
 
 
 ## 2. LineBasicMaterial
@@ -99,8 +99,6 @@ function MeshStandardMaterial() {
     <mesh>
       <torusKnotGeometry args={[1, 0.3, 100, 16]} />
       <meshStandardMaterial color="orange" />
-      <ambientLight intensity={5} />
-      <pointLight position={[2, 2, 2]} />
     </mesh>
   );
 }

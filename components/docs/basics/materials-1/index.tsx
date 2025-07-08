@@ -1,5 +1,7 @@
 "use client";
 
+export * from './basic';
+
 import { Wrapper, Mesh } from '../wrapper';
 
 export function MeshBasicMaterial() {
@@ -70,23 +72,7 @@ export function MeshDepthMaterial() {
 export function MeshDistanceMaterial() {
   return (
     <>
-      {/* <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <meshDistanceMaterial /> */}
 
-      {/* <mesh position={[-2, 0, 0]}>
-        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-        <meshStandardMaterial color="purple" />
-      </mesh>
-
-      <mesh position={[2, 0, 0]}>
-        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-        <meshDistanceMaterial />
-      </mesh>
-
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]}>
-        <planeGeometry args={[10, 10]} />
-        <meshStandardMaterial color="white" />
-      </mesh> */}
     </>
   )
 }
