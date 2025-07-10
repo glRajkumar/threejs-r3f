@@ -233,5 +233,9 @@
 }
 
 .canvas-wrapper > .lil-gui {
-  @apply absolute right-0 top-0;
+  @apply absolute right-0 top-0 max-h-96;
+}
+
+.lil-gui option {
+  @apply bg-neutral-600;
 }
