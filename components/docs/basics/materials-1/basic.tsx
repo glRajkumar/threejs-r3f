@@ -30,6 +30,13 @@ const combineKeys = {
 }
 
 function BasicMesh() {
+  const [fogEnabled, setFogEnabled] = useState(false)
+  const [fogColor, setFogColor] = useState("#ff0000")
+
+  const [depthTest, setDepthTest] = useState(true)
+  const [depthWrite, setDepthWrite] = useState(true)
+  const [alphaTest, setAlphaTest] = useState(0)
+  const [alphaHash, setAlphaHash] = useState(false)
   const [transparent, setTransparent] = useState(false)
   const [opacity, setOpacity] = useState(1)
   const [visible, setVisible] = useState(true)
@@ -37,9 +44,9 @@ function BasicMesh() {
 
   const [color, setColor] = useState("#14b8a6")
   const [wireframe, setWireframe] = useState(false)
-  const [fog, setFog] = useState(false)
-  const [reflectivity, setReflectivity] = useState(0)
-  const [refractionRatio, setRefractionRatio] = useState(0)
+  const [fog, setFog] = useState(true)
+  const [reflectivity, setReflectivity] = useState(1)
+  const [refractionRatio, setRefractionRatio] = useState(1)
   const [combine, setCombine] = useState<0 | 1 | 2>(THREE.MultiplyOperation)
 
   const [maps, setMaps] = useState({
@@ -67,11 +74,20 @@ function BasicMesh() {
   useEffect(() => {
     const gui = new GUI({ container: document.getElementById("basic")! })
 
-    const folder = gui.addFolder("THREE.Material")
-    folder.add({ transparent }, "transparent").onChange(setTransparent)
-    folder.add({ opacity }, "opacity", 0, 1, 0.01).onChange(setOpacity)
-    folder.add({ visible }, "visible").onChange(setVisible)
-    folder
+    const folder = gui.addFolder("Scene")
+
+    folder.add({ fogEnabled }, "fogEnabled").onChange(setFogEnabled)
+    folder.addColor({ fogColor }, "fogColor").onChange(setFogColor)
+
+    const folder1 = gui.addFolder("THREE.Material")
+    folder1.add({ transparent }, "transparent").onChange(setTransparent)
+    folder1.add({ opacity }, "opacity", 0, 1, 0.01).onChange(setOpacity)
+    folder.add({ depthTest }, 'depthTest').onChange(setDepthTest)
+    folder.add({ depthWrite }, 'depthWrite').onChange(setDepthWrite)
+    folder.add({ alphaTest }, 'alphaTest', 0, 1, 0.01).onChange(setAlphaTest)
+    folder.add({ alphaHash }, 'alphaHash').onChange(setAlphaHash)
+    folder1.add({ visible }, "visible").onChange(setVisible)
+    folder1
       .add({ side }, "side", {
         Front: THREE.FrontSide,
         Back: THREE.BackSide,
@@ -90,7 +106,7 @@ function BasicMesh() {
     folder2.add(maps, 'map', mapKeys).onChange((v: string) => updateTexture('map', v))
     folder2.add(maps, 'alphaMap', alphaMapKeys).onChange((v: string) => updateTexture('alphaMap', v))
 
-    folder2.add({ combine }, 'combine', combineKeys).onChange((value: number) => setCombine(value as 0 | 1 | 2))
+    folder2.add({ combine }, 'combine', combineKeys).onChange(setCombine)
     folder2.add({ reflectivity }, 'reflectivity', 0, 1).onChange(setReflectivity)
     folder2.add({ refractionRatio }, 'refractionRatio', 0, 1).onChange(setRefractionRatio)
 
@@ -104,7 +120,7 @@ function BasicMesh() {
 
     const material = ref.current.material as THREE.MeshBasicMaterial
     material.needsUpdate = true
-  }, [combine, maps])
+  }, [combine, alphaHash, depthTest, depthWrite, fog])
 
   const refractionCubeTexture = reflectionCubeTexture.clone()
   refractionCubeTexture.mapping = THREE.CubeRefractionMapping
@@ -115,14 +131,14 @@ function BasicMesh() {
     texture.repeat.set(9, 1)
   })
 
-  const textures = {
-    bricks: textureMaps.map,
-    fibers: textureMaps.alphaMap,
-    reflection: reflectionCubeTexture,
-    refraction: refractionCubeTexture,
-  }
-
   const updateTexture = (key: 'map' | 'alphaMap' | 'envMap', val: string) => {
+    const textures = {
+      bricks: textureMaps.map,
+      fibers: textureMaps.alphaMap,
+      reflection: reflectionCubeTexture,
+      refraction: refractionCubeTexture,
+    }
+
     setMaps((prev) => ({ ...prev, [key]: val }))
 
     if (!ref.current) return
@@ -135,23 +151,36 @@ function BasicMesh() {
     }
 
     material[key] = textures[val as keyof typeof textures]
+    material.needsUpdate = true
   }
 
   return (
-    <mesh ref={ref}>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <meshBasicMaterial
-        color={color}
-        wireframe={wireframe}
-        transparent={transparent}
-        opacity={opacity}
-        visible={visible}
-        side={side}
-        reflectivity={reflectivity}
-        refractionRatio={refractionRatio}
-        combine={combine}
-      />
-    </mesh>
+    <>
+      {
+        fogEnabled && fog &&
+        <fog attach="fog" args={[fogColor, 1, 10]} />
+      }
+
+      <mesh ref={ref}>
+        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
+        <meshBasicMaterial
+          fog={fog}
+          side={side}
+          color={color}
+          opacity={opacity}
+          visible={visible}
+          combine={combine}
+          alphaHash={alphaHash}
+          alphaTest={alphaTest}
+          depthTest={depthTest}
+          wireframe={wireframe}
+          depthWrite={depthWrite}
+          transparent={transparent}
+          reflectivity={reflectivity}
+          refractionRatio={refractionRatio}
+        />
+      </mesh>
+    </>
   )
 }
 
