@@ -1,46 +1,25 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useCubeTexture, useTexture } from "@react-three/drei"
 import * as THREE from "three"
 import GUI from "lil-gui"
 
+import { keys, useMaterialGUI, useSceneGUI, useThemeTextures } from "./use-helpers"
+
 import { Wrapper, useMesh } from "../wrapper"
 
-const mapKeys = {
-  none: null,
-  bricks: "bricks",
-}
-
-const envMapKeys = {
-  none: null,
-  reflection: "reflection",
-  refraction: "refraction",
-}
-
-const alphaMapKeys = {
-  none: null,
-  fibers: "fibers",
-}
-
-const combineKeys = {
-  'THREE.MultiplyOperation': THREE.MultiplyOperation,
-  'THREE.MixOperation': THREE.MixOperation,
-  'THREE.AddOperation': THREE.AddOperation
-}
-
 function BasicMesh() {
-  const [fogEnabled, setFogEnabled] = useState(false)
-  const [fogColor, setFogColor] = useState("#ff0000")
-
-  const [depthTest, setDepthTest] = useState(true)
-  const [depthWrite, setDepthWrite] = useState(true)
-  const [alphaTest, setAlphaTest] = useState(0)
-  const [alphaHash, setAlphaHash] = useState(false)
-  const [transparent, setTransparent] = useState(false)
-  const [opacity, setOpacity] = useState(1)
-  const [visible, setVisible] = useState(true)
-  const [side, setSide] = useState<0 | 1 | 2>(THREE.FrontSide)
+  const {
+    fogEnabled, fogColor,
+    createSceneGUI,
+  } = useSceneGUI()
+  const {
+    depthTest, depthWrite,
+    alphaTest, alphaHash,
+    transparent, opacity,
+    visible, side,
+    createMaterialGUI,
+  } = useMaterialGUI()
 
   const [color, setColor] = useState("#14b8a6")
   const [wireframe, setWireframe] = useState(false)
@@ -55,60 +34,26 @@ function BasicMesh() {
     envMap: 'none'
   })
 
+  const textureMaps = useThemeTextures()
   const ref = useMesh()
-
-  const reflectionCubeTexture = useCubeTexture([
-    "px.jpg",
-    "nx.jpg",
-    "py.jpg",
-    "ny.jpg",
-    "pz.jpg",
-    "nz.jpg"
-  ], { path: "/images/textures/SwedishRoyalCastle/" })
-
-  const textureMaps = useTexture({
-    map: `/images/textures/brick/diffuse.jpg`,
-    alphaMap: `/images/textures/alphaMap.jpg`,
-  })
 
   useEffect(() => {
     const gui = new GUI({ container: document.getElementById("basic")! })
+    createSceneGUI(gui)
+    createMaterialGUI(gui)
 
-    const folder = gui.addFolder("Scene")
+    const folder = gui.addFolder("THREE.MeshBasicMaterial")
+    folder.addColor({ color }, "color").onChange(setColor)
+    folder.add({ wireframe }, "wireframe").onChange(setWireframe)
+    folder.add({ fog }, 'fog').onChange(setFog)
 
-    folder.add({ fogEnabled }, "fogEnabled").onChange(setFogEnabled)
-    folder.addColor({ fogColor }, "fogColor").onChange(setFogColor)
+    folder.add(maps, 'map', keys.mapKeys).onChange((v: string) => updateTexture('map', v))
+    folder.add(maps, 'envMap', keys.envMapKeys).onChange((v: string) => updateTexture('envMap', v))
+    folder.add(maps, 'alphaMap', keys.alphaMapKeys).onChange((v: string) => updateTexture('alphaMap', v))
 
-    const folder1 = gui.addFolder("THREE.Material")
-    folder1.add({ transparent }, "transparent").onChange(setTransparent)
-    folder1.add({ opacity }, "opacity", 0, 1, 0.01).onChange(setOpacity)
-    folder.add({ depthTest }, 'depthTest').onChange(setDepthTest)
-    folder.add({ depthWrite }, 'depthWrite').onChange(setDepthWrite)
-    folder.add({ alphaTest }, 'alphaTest', 0, 1, 0.01).onChange(setAlphaTest)
-    folder.add({ alphaHash }, 'alphaHash').onChange(setAlphaHash)
-    folder1.add({ visible }, "visible").onChange(setVisible)
-    folder1
-      .add({ side }, "side", {
-        Front: THREE.FrontSide,
-        Back: THREE.BackSide,
-        Double: THREE.DoubleSide
-      })
-      .onChange((value: number) => {
-        setSide(value as 0 | 1 | 2)
-      })
-
-    const folder2 = gui.addFolder("THREE.MeshBasicMaterial")
-    folder2.addColor({ color }, "color").onChange(setColor)
-    folder2.add({ wireframe }, "wireframe").onChange(setWireframe)
-    folder2.add({ fog }, 'fog').onChange(setFog)
-
-    folder2.add(maps, 'envMap', envMapKeys).onChange((v: string) => updateTexture('envMap', v))
-    folder2.add(maps, 'map', mapKeys).onChange((v: string) => updateTexture('map', v))
-    folder2.add(maps, 'alphaMap', alphaMapKeys).onChange((v: string) => updateTexture('alphaMap', v))
-
-    folder2.add({ combine }, 'combine', combineKeys).onChange(setCombine)
-    folder2.add({ reflectivity }, 'reflectivity', 0, 1).onChange(setReflectivity)
-    folder2.add({ refractionRatio }, 'refractionRatio', 0, 1).onChange(setRefractionRatio)
+    folder.add({ combine }, 'combine', keys.combineKeys).onChange(setCombine)
+    folder.add({ reflectivity }, 'reflectivity', 0, 1).onChange(setReflectivity)
+    folder.add({ refractionRatio }, 'refractionRatio', 0, 1).onChange(setRefractionRatio)
 
     gui.close()
 
@@ -122,21 +67,12 @@ function BasicMesh() {
     material.needsUpdate = true
   }, [combine, alphaHash, depthTest, depthWrite, fog])
 
-  const refractionCubeTexture = reflectionCubeTexture.clone()
-  refractionCubeTexture.mapping = THREE.CubeRefractionMapping
-
-  Object.values(textureMaps).forEach((texture) => {
-    texture.wrapS = THREE.RepeatWrapping
-    texture.wrapT = THREE.RepeatWrapping
-    texture.repeat.set(9, 1)
-  })
-
   const updateTexture = (key: 'map' | 'alphaMap' | 'envMap', val: string) => {
     const textures = {
       bricks: textureMaps.map,
       fibers: textureMaps.alphaMap,
-      reflection: reflectionCubeTexture,
-      refraction: refractionCubeTexture,
+      reflection: textureMaps.reflectionCubeTexture,
+      refraction: textureMaps.refractionCubeTexture,
     }
 
     setMaps((prev) => ({ ...prev, [key]: val }))
