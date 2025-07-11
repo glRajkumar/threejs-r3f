@@ -1,6 +1,7 @@
 "use client";
 
 export * from './basic';
+export * from './line-basic';
 
 import { Wrapper, Mesh } from '../wrapper';
 
@@ -15,19 +16,6 @@ export function MeshBasicMaterial() {
   )
 }
 
-export function LineBasicMaterial() {
-  return (
-    <Wrapper>
-      <Mesh useDefaultMaterial={false}>
-        <line>
-          <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-          <lineBasicMaterial color="red" />
-        </line>
-      </Mesh>
-    </Wrapper>
-  )
-}
-
 export function LineDashedMaterial() {
   return (
     <Wrapper>
@@ -36,8 +24,8 @@ export function LineDashedMaterial() {
           <torusKnotGeometry args={[1, 0.3, 100, 16]} />
           <lineDashedMaterial
             color="green"
-            dashSize={0.3}
-            gapSize={0.3}
+            dashSize={6}
+            gapSize={3}
           />
         </lineSegments>
       </Mesh>

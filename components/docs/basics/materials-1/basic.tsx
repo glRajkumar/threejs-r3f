@@ -21,9 +21,10 @@ function BasicMesh() {
     createMaterialGUI,
   } = useMaterialGUI()
 
-  const [color, setColor] = useState("#14b8a6")
   const [wireframe, setWireframe] = useState(false)
+  const [color, setColor] = useState("#14b8a6")
   const [fog, setFog] = useState(true)
+
   const [reflectivity, setReflectivity] = useState(1)
   const [refractionRatio, setRefractionRatio] = useState(1)
   const [combine, setCombine] = useState<0 | 1 | 2>(THREE.MultiplyOperation)
