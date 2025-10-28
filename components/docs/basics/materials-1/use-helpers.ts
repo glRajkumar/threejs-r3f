@@ -17,6 +17,14 @@ export const keys = {
     none: null,
     fibers: "fibers",
   },
+  roughnessMapKeys: {
+    none: null,
+    bricks: "bricks",
+  },
+  metalnessMapKeys: {
+    none: null,
+    fibers: "fibers",
+  },
   combineKeys: {
     'THREE.MultiplyOperation': THREE.MultiplyOperation,
     'THREE.MixOperation': THREE.MixOperation,

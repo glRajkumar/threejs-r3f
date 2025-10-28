@@ -3,21 +3,9 @@
 export * from './basic';
 export * from './line-basic';
 export * from './line-dashed';
+export * from './standard';
 
 import { Wrapper, Mesh } from '../wrapper';
-
-export function MeshStandardMaterial() {
-  return (
-    <Wrapper>
-      <Mesh useDefaultMaterial={false}>
-        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-        <meshBasicMaterial color="blue" />
-        <ambientLight intensity={5} />
-        <pointLight position={[2, 2, 2]} />
-      </Mesh>
-    </Wrapper>
-  )
-}
 
 export function MeshDepthMaterial() {
   return (
