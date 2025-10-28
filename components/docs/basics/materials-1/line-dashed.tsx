@@ -2,10 +2,11 @@
 
 import { useEffect, useMemo, useState } from "react"
 import * as THREE from "three"
+import { Line } from "@react-three/drei"
 import GUI from "lil-gui"
 
-import { useSceneGUI } from "./use-helpers"
 import { useMesh, Wrapper } from "../wrapper"
+import { useSceneGUI } from "./use-helpers"
 
 function LineDashedMesh() {
   const {
@@ -39,11 +40,27 @@ function LineDashedMesh() {
     return () => gui.destroy()
   }, [])
 
-  const geometry = useMemo(() => {
-    const torusKnot = new THREE.TorusKnotGeometry(10, 3, 100, 16)
+  const points = useMemo(() => {
+    const torusKnot = new THREE.TorusKnotGeometry(1, 0.3, 100, 16)
     const edges = new THREE.EdgesGeometry(torusKnot)
-    return edges
+    const positions = edges.attributes.position.array
+
+    const pts: THREE.Vector3[] = []
+    for (let i = 0; i < positions.length; i += 3) {
+      pts.push(new THREE.Vector3(
+        positions[i],
+        positions[i + 1],
+        positions[i + 2]
+      ))
+    }
+    return pts
   }, [])
+
+  // const geometry = useMemo(() => {
+  //   const torusKnot = new THREE.TorusKnotGeometry(10, 3, 100, 16)
+  //   const edges = new THREE.EdgesGeometry(torusKnot)
+  //   return edges
+  // }, [])
 
   useEffect(() => {
     if (!ref.current) return
@@ -59,8 +76,7 @@ function LineDashedMesh() {
         <fog attach="fog" args={[fogColor, 1, 10]} />
       }
 
-      <mesh ref={ref}>
-        {/* @ts-ignore */}
+      {/* <mesh ref={ref}>
         <line geometry={geometry} onUpdate={v => v?.computeLineDistances()}>
           <lineDashedMaterial
             fog={fog}
@@ -71,7 +87,19 @@ function LineDashedMesh() {
             scale={scale}
           />
         </line>
-      </mesh>
+      </mesh> */}
+
+      <Line
+        ref={ref as any}
+        points={points}
+        color={color}
+        fog={fog}
+        lineWidth={linewidth}
+        dashed={true}
+        dashSize={dashSize}
+        gapSize={gapSize}
+        dashScale={scale}
+      />
     </>
   )
 }

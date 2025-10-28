@@ -69,12 +69,60 @@ scene.add(line);
 ###### React-Three-Fiber Example
 ```jsx
 function LineDashedMaterial() {
+  const geometry = useMemo(() => {
+    const torusKnot = new THREE.TorusKnotGeometry(1, 0.3, 100, 16)
+    const edges = new THREE.EdgesGeometry(torusKnot)
+    return edges
+  }, [])
+
   return (
-    <lineSegments>
-      <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-      <lineDashedMaterial color="green" dashSize={0.3} gapSize={0.3} />
-    </lineSegments>
-  );
+    <line 
+      geometry={geometry} 
+      onUpdate={v => v.computeLineDistances()} // must call it 
+    >
+      <lineDashedMaterial
+        color="red" 
+        linewidth // Due to limitations in WebGL, linewidth is almost always rendered at 1 regardless of the value you set.
+      />
+    </line>
+  )
+}
+```
+
+The modern solution in Three.js is to use a different set of "fat line" utilities (Line2, LineMaterial, LineGeometry). In the react-three-fiber ecosystem, this is made very simple with the `Line` component from `@react-three/drei`.
+
+```jsx
+import { Line } from "@react-three/drei"
+
+function LineDashedMaterial() {
+  const points = useMemo(() => {
+    const torusKnot = new THREE.TorusKnotGeometry(10, 3, 100, 16)
+    const edges = new THREE.EdgesGeometry(torusKnot)
+    const positions = edges.attributes.position.array
+
+    const pts: THREE.Vector3[] = []
+    for (let i = 0; i < positions.length; i += 3) {
+      pts.push(new THREE.Vector3(
+        positions[i],
+        positions[i + 1],
+        positions[i + 2]
+      ))
+    }
+    return pts
+  }, [])
+
+  return (
+   <Line 
+    points={points}                 // Array of points, Array<Vector3 | Vector2 | [number, number, number] | [number, number] | number>
+    color="black"                   // Default
+    lineWidth={1}                   // In pixels (default)
+    segments                        // If true, renders a THREE.LineSegments2. Otherwise, renders a THREE.Line2
+    dashed={false}                  // Default
+    vertexColors={[[0, 0, 0], ...]} // Optional array of RGB values for each point
+    {...lineProps}                  // All THREE.Line2 props are valid
+    {...materialProps}              // All THREE.LineMaterial props are valid
+   />
+  )
 }
 ```
 

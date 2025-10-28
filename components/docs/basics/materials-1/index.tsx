@@ -2,36 +2,9 @@
 
 export * from './basic';
 export * from './line-basic';
+export * from './line-dashed';
 
 import { Wrapper, Mesh } from '../wrapper';
-
-export function MeshBasicMaterial() {
-  return (
-    <Wrapper>
-      <Mesh useDefaultMaterial={false}>
-        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-        <meshBasicMaterial color="blue" />
-      </Mesh>
-    </Wrapper>
-  )
-}
-
-export function LineDashedMaterial() {
-  return (
-    <Wrapper>
-      <Mesh useDefaultMaterial={false}>
-        <lineSegments>
-          <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-          <lineDashedMaterial
-            color="green"
-            dashSize={6}
-            gapSize={3}
-          />
-        </lineSegments>
-      </Mesh>
-    </Wrapper>
-  )
-}
 
 export function MeshStandardMaterial() {
   return (
