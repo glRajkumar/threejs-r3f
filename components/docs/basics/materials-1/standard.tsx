@@ -109,21 +109,23 @@ function StandardMesh() {
         <torusKnotGeometry args={[1, 0.3, 100, 16]} />
         <meshStandardMaterial
           fog={fog}
-          side={side}
           color={color}
-          opacity={opacity}
-          visible={visible}
+          wireframe={wireframe}
+
           emissive={emissive}
           roughness={roughness}
           metalness={metalness}
+          flatShading={flatShading}
+          vertexColors={vertexColors}
+
+          side={side}
+          opacity={opacity}
+          visible={visible}
           alphaHash={alphaHash}
           alphaTest={alphaTest}
           depthTest={depthTest}
-          wireframe={wireframe}
           depthWrite={depthWrite}
           transparent={transparent}
-          flatShading={flatShading}
-          vertexColors={vertexColors}
         />
       </mesh>
 

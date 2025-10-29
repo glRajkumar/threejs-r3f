@@ -25,6 +25,10 @@ export const keys = {
     none: null,
     fibers: "fibers",
   },
+  matcapsKeys: {
+    none: null,
+    porcelainWhite: "porcelainWhite",
+  },
   combineKeys: {
     'THREE.MultiplyOperation': THREE.MultiplyOperation,
     'THREE.MixOperation': THREE.MixOperation,
@@ -101,6 +105,7 @@ export function useThemeTextures() {
   const textureMaps = useTexture({
     map: `/images/textures/brick/diffuse.jpg`,
     alphaMap: `/images/textures/alphaMap.jpg`,
+    matcap: `/images/textures/matcaps/matcap-porcelain-white.jpg`,
   })
 
   const refractionCubeTexture = reflectionCubeTexture.clone()

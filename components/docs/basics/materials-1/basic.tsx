@@ -102,17 +102,19 @@ function BasicMesh() {
         <torusKnotGeometry args={[1, 0.3, 100, 16]} />
         <meshBasicMaterial
           fog={fog}
-          side={side}
           color={color}
+          wireframe={wireframe}
+
+          side={side}
           opacity={opacity}
           visible={visible}
-          combine={combine}
           alphaHash={alphaHash}
           alphaTest={alphaTest}
           depthTest={depthTest}
-          wireframe={wireframe}
           depthWrite={depthWrite}
           transparent={transparent}
+
+          combine={combine}
           reflectivity={reflectivity}
           refractionRatio={refractionRatio}
         />
