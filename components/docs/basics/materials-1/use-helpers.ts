@@ -29,6 +29,15 @@ export const keys = {
     none: null,
     porcelainWhite: "porcelainWhite",
   },
+  gradientMapKeys: {
+    none: null,
+    threeTone: "threeTone",
+    fiveTone: "fiveTone",
+  },
+  iridescenceMapKeys: {
+    none: null,
+    fibers: "fibers",
+  },
   combineKeys: {
     'THREE.MultiplyOperation': THREE.MultiplyOperation,
     'THREE.MixOperation': THREE.MixOperation,
@@ -108,6 +117,11 @@ export function useThemeTextures() {
     matcap: `/images/textures/matcaps/matcap-porcelain-white.jpg`,
   })
 
+  const gradientMaps = useTexture([
+    `/images/textures/gradients/threeTone.jpg`,
+    `/images/textures/gradients/fiveTone.jpg`,
+  ])
+
   const refractionCubeTexture = reflectionCubeTexture.clone()
   refractionCubeTexture.mapping = THREE.CubeRefractionMapping
 
@@ -117,9 +131,16 @@ export function useThemeTextures() {
     texture.repeat.set(9, 1)
   })
 
+  gradientMaps.forEach(textur => {
+    textur.minFilter = THREE.NearestFilter
+    textur.magFilter = THREE.NearestFilter
+  })
+
   return {
     ...textureMaps,
     reflectionCubeTexture,
     refractionCubeTexture,
+    threeToneGradientMap: gradientMaps[0],
+    fiveToneGradientMap: gradientMaps[1],
   }
 }
