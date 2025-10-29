@@ -17,7 +17,7 @@ function DocsLayout({ children, title, className, ...rest }: props) {
         {...rest}
       />
 
-      <main className={cn("max-w-full flex-1 p-6 md:p-8 prose prose-sm prose-th:py-1 prose-th:px-2 prose-td:px-2 relative", className)}>
+      <main className={cn("max-w-full min-w-0 flex-1 p-6 md:p-8 prose prose-sm prose-th:py-1 prose-th:px-2 prose-td:px-2 relative", className)}>
         <DocNavbar title={title} />
 
         {children}
