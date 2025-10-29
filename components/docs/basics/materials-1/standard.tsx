@@ -21,6 +21,7 @@ function StandardMesh() {
   } = useMaterialGUI()
 
   const [wireframe, setWireframe] = useState(false)
+  const [emissive, setEmissive] = useState("#000")
   const [color, setColor] = useState("#14b8a6")
   const [fog, setFog] = useState(true)
 
@@ -28,7 +29,6 @@ function StandardMesh() {
   const [flatShading, setFlatShading] = useState(false)
   const [roughness, setRoughness] = useState(1)
   const [metalness, setMetalness] = useState(0)
-  const [emissive, setEmissive] = useState("#14b8a6")
 
   const [maps, setMaps] = useState({
     map: 'none',
@@ -48,10 +48,10 @@ function StandardMesh() {
 
     const folder = gui.addFolder("THREE.MeshStandardMaterial")
     folder.addColor({ color }, "color").onChange(setColor)
-    folder.add({ wireframe }, "wireframe").onChange(setWireframe)
-    folder.add({ fog }, 'fog').onChange(setFog)
-
     folder.addColor({ emissive }, 'emissive').onChange(setEmissive)
+
+    folder.add({ fog }, 'fog').onChange(setFog)
+    folder.add({ wireframe }, "wireframe").onChange(setWireframe)
     folder.add({ roughness }, 'roughness', 0, 1).onChange(setRoughness)
     folder.add({ metalness }, 'metalness', 0, 1).onChange(setMetalness)
     folder.add({ flatShading }, 'flatShading').onChange(setFlatShading)
@@ -107,10 +107,6 @@ function StandardMesh() {
 
       <mesh ref={ref}>
         <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-
-        <ambientLight intensity={10} />
-        <pointLight position={[2, 2, 2]} />
-
         <meshStandardMaterial
           fog={fog}
           side={side}
@@ -130,6 +126,9 @@ function StandardMesh() {
           vertexColors={vertexColors}
         />
       </mesh>
+
+      <ambientLight />
+      <pointLight position={[2, 2, 2]} />
     </>
   )
 }
