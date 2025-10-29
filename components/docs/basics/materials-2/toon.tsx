@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import * as THREE from "three"
 import GUI from "lil-gui"
 
-import { keys, useSceneGUI, useThemeTextures } from "../materials-1/use-helpers"
+import { keys, useMaterialGUI, useSceneGUI, useThemeTextures } from "../materials-1/use-helpers"
 
 import { Wrapper, useMesh } from "../wrapper"
 
@@ -13,6 +13,13 @@ function ToonMesh() {
     fogEnabled, fogColor,
     createSceneGUI,
   } = useSceneGUI()
+  const {
+    depthTest, depthWrite,
+    alphaTest, alphaHash,
+    transparent, opacity,
+    visible, side,
+    createMaterialGUI,
+  } = useMaterialGUI()
 
   const [color, setColor] = useState("#14b8a6")
   const [fog, setFog] = useState(true)
@@ -29,6 +36,7 @@ function ToonMesh() {
   useEffect(() => {
     const gui = new GUI({ container: document.getElementById("toon")! })
     createSceneGUI(gui)
+    createMaterialGUI(gui)
 
     const folder = gui.addFolder("THREE.MeshToonMaterial")
     folder.addColor({ color }, "color").onChange(setColor)
@@ -85,8 +93,19 @@ function ToonMesh() {
         <meshToonMaterial
           color={color}
           fog={fog}
+
+          side={side}
+          opacity={opacity}
+          visible={visible}
+          alphaHash={alphaHash}
+          alphaTest={alphaTest}
+          depthTest={depthTest}
+          depthWrite={depthWrite}
+          transparent={transparent}
         />
       </mesh>
+
+      <ambientLight />
     </>
   )
 }

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import * as THREE from "three"
 import GUI from "lil-gui"
 
-import { keys, useSceneGUI, useThemeTextures } from "../materials-1/use-helpers"
+import { keys, useMaterialGUI, useSceneGUI, useThemeTextures } from "../materials-1/use-helpers"
 
 import { Wrapper, useMesh } from "../wrapper"
 
@@ -13,6 +13,13 @@ function PhysicalMesh() {
     fogEnabled, fogColor,
     createSceneGUI,
   } = useSceneGUI()
+  const {
+    depthTest, depthWrite,
+    alphaTest, alphaHash,
+    transparent, opacity,
+    visible, side,
+    createMaterialGUI,
+  } = useMaterialGUI()
 
   const [specular, setSpecular] = useState("#000")
   const [emissive, setEmissive] = useState("#000")
@@ -51,6 +58,7 @@ function PhysicalMesh() {
   useEffect(() => {
     const gui = new GUI({ container: document.getElementById("physical")! })
     createSceneGUI(gui)
+    createMaterialGUI(gui)
 
     const folder = gui.addFolder("THREE.MeshPhysicalMaterial")
     folder.addColor({ specular }, "specular").onChange(setSpecular)
@@ -149,8 +157,19 @@ function PhysicalMesh() {
           sheenRoughness={sheenRoughness}
           specularIntensity={specularIntensity}
           clearcoatRoughness={clearcoatRoughness}
+
+          side={side}
+          opacity={opacity}
+          visible={visible}
+          alphaHash={alphaHash}
+          alphaTest={alphaTest}
+          depthTest={depthTest}
+          depthWrite={depthWrite}
+          transparent={transparent}
         />
       </mesh>
+
+      <ambientLight />
     </>
   )
 }

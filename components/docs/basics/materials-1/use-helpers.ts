@@ -54,6 +54,8 @@ export function useSceneGUI() {
 
     folder.add({ fogEnabled }, "fogEnabled").onChange(setFogEnabled)
     folder.addColor({ fogColor }, "fogColor").onChange(setFogColor)
+
+    folder.close()
   }
 
   return {
@@ -73,15 +75,15 @@ export function useMaterialGUI() {
   const [side, setSide] = useState<0 | 1 | 2>(THREE.FrontSide)
 
   function createMaterialGUI(gui: GUI) {
-    const materialFolder = gui.addFolder("THREE.Material")
-    materialFolder.add({ transparent }, "transparent").onChange(setTransparent)
-    materialFolder.add({ opacity }, "opacity", 0, 1, 0.01).onChange(setOpacity)
-    materialFolder.add({ depthTest }, 'depthTest').onChange(setDepthTest)
-    materialFolder.add({ depthWrite }, 'depthWrite').onChange(setDepthWrite)
-    materialFolder.add({ alphaTest }, 'alphaTest', 0, 1, 0.01).onChange(setAlphaTest)
-    materialFolder.add({ alphaHash }, 'alphaHash').onChange(setAlphaHash)
-    materialFolder.add({ visible }, "visible").onChange(setVisible)
-    materialFolder
+    const folder = gui.addFolder("THREE.Material")
+    folder.add({ transparent }, "transparent").onChange(setTransparent)
+    folder.add({ opacity }, "opacity", 0, 1, 0.01).onChange(setOpacity)
+    folder.add({ depthTest }, 'depthTest').onChange(setDepthTest)
+    folder.add({ depthWrite }, 'depthWrite').onChange(setDepthWrite)
+    folder.add({ alphaTest }, 'alphaTest', 0, 1, 0.01).onChange(setAlphaTest)
+    folder.add({ alphaHash }, 'alphaHash').onChange(setAlphaHash)
+    folder.add({ visible }, "visible").onChange(setVisible)
+    folder
       .add({ side }, "side", {
         Front: THREE.FrontSide,
         Back: THREE.BackSide,
@@ -90,6 +92,8 @@ export function useMaterialGUI() {
       .onChange((value: number) => {
         setSide(value as 0 | 1 | 2)
       })
+
+    folder.close()
   }
 
   return {
