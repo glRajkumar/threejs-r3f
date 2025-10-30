@@ -5,7 +5,8 @@ import { Physical, Toon, Points } from "./index";
 ## 11. MeshPhysicalMaterial
 Extended version of `MeshStandardMaterial` with advanced properties.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.MeshPhysicalMaterial({ color: 0x00ff00, clearcoat: 1.0, clearcoatRoughness: 0.1 });
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -13,7 +14,8 @@ const torusKnot = new THREE.Mesh(geometry, material);
 scene.add(torusKnot);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function MeshPhysicalMaterial() {
   return (
@@ -32,7 +34,8 @@ function MeshPhysicalMaterial() {
 ## 12. MeshToonMaterial
 Creates a cartoon-style shading effect.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.MeshToonMaterial({ color: 0x0000ff });
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -40,7 +43,8 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function MeshToonMaterial() {
   return (
@@ -58,7 +62,8 @@ function MeshToonMaterial() {
 ## 13. PointsMaterial
 Used for rendering points instead of meshes.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.PointsMaterial({ color: 0xff00ff, size: 0.1 });
 const geometry = new THREE.BufferGeometry();
@@ -68,7 +73,8 @@ const points = new THREE.Points(geometry, material);
 scene.add(points);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function PointsMaterial() {
   return (

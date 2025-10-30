@@ -20,13 +20,15 @@ This light cannot be used to cast shadows as it does not have a direction.
 AmbientLight(Color?: 0xffffff, intensity?: 1)
 ```
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const light = new THREE.AmbientLight("red", 0.5)
 scene.add(light)
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <ambientLight args={["red", 0.5]} />
 ```
@@ -43,14 +45,16 @@ Can cast shadows and rotation has no effect.
 DirectionalLight(color?: 0xffffff, intensity?: 1)
 ```
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const light = new THREE.DirectionalLight(0xff0000, 0.8)
 light.position.set(5, 10, 5)
 scene.add(light)
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <directionalLight args={[0xff0000, 0.8]} position={[5, 10, 5]} />
 ```
@@ -67,13 +71,15 @@ This light cannot be used to cast shadows.
 HemisphereLight(skyColor?: 0xffffff, groundColor?: 0xffffff, intensity?: 1)
 ```
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const light = new THREE.HemisphereLight(0x4040ff, 0x80ff80, 0.6)
 scene.add(light)
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <hemisphereLight args={[0x4040ff, 0x80ff80, 0.6]} />
 ```
@@ -90,7 +96,8 @@ LightProbe(sh?: SphericalHarmonics3, intensity?: 1)
 
 SphericalHarmonics3: Represents a third-order spherical harmonics (SH).
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 import { LightProbeGenerator } from 'three/addons/lights/LightProbeGenerator.js'
 
@@ -116,7 +123,8 @@ new THREE.CubeTextureLoader().load(urls, function (cubeTexture) {
 })
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 import { LightProbeGenerator } from "three/addons/lights/LightProbeGenerator.js"
 import { useCubeTexture } from "@react-three/drei"
@@ -164,14 +172,16 @@ PointLight(color?: 0xffffff, intensity?: 1, distance?: 0, decay?: 2)
 distance - Maximum range of the light. 
 decay - The amount the light dims along the distance of the light.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const light = new THREE.PointLight(0xff0000, 1, 10)
 light.position.set(2, 3, 2)
 scene.add(light)
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <pointLight args={[0xff0000, 1, 10]} position={[2, 3, 2]} />
 ```
@@ -190,13 +200,15 @@ Only `MeshStandardMaterial` and `MeshPhysicalMaterial` are supported
 RectAreaLight(color?: 0xffffff, intensity?: 1, width?: 10, height?: 10)
 ```
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const rectLight = new THREE.RectAreaLight(0xffffff, 2, 4, 2)
 scene.add(rectLight)
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <rectAreaLight args={[0xffffff, 2, 4, 2]} />
 ```
@@ -217,14 +229,16 @@ angle - Maximum angle of light dispersion from its direction whose upper bound i
 penumbra - Percent of the spotlight cone that is attenuated due to penumbra. Takes values between zero and 1. 
 decay - The amount the light dims along the distance of the light.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const light = new THREE.SpotLight(0xff0000, 0.6)
 light.position.set(5, 10, 5)
 scene.add(light)
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <spotLight args={[0xff0000, 0.6]} position={[5, 10, 5]} />
 ```
@@ -232,7 +246,7 @@ scene.add(light)
 <SpotLight />
 
 
-## Summary
+**Summary**
 - **Light**: Base class, not used directly.
 - **AmbientLight**: Provides uniform lighting across the scene.
 - **DirectionalLight**: Mimics sunlight with parallel rays.

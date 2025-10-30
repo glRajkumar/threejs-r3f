@@ -12,7 +12,8 @@ Helpers in Three.js and React-Three-Fiber provide visual debugging tools to assi
 ## 1. ArrowHelper
 Displays an arrow in 3D space.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const dir = new THREE.Vector3(1, 0, 0);
 dir.normalize();
@@ -22,7 +23,8 @@ const arrowHelper = new THREE.ArrowHelper(dir, origin, length, 0xff0000);
 scene.add(arrowHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <primitive object={new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0).normalize(), new THREE.Vector3(0, 0, 0), 2, 0xff0000)} />
 ```
@@ -33,13 +35,15 @@ scene.add(arrowHelper);
 ## 2. AxesHelper
 Shows the X, Y, and Z axes.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const axesHelper = new THREE.AxesHelper(5);
 scene.add(axesHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <axesHelper args={[5]} />
 ```
@@ -50,13 +54,15 @@ scene.add(axesHelper);
 ## 3. BoxHelper
 Outlines a mesh with a box.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const boxHelper = new THREE.BoxHelper(mesh, 0xffff00);
 scene.add(boxHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <primitive object={new THREE.BoxHelper(mesh, 0xffff00)} />
 ```
@@ -67,14 +73,16 @@ scene.add(boxHelper);
 ## 4. Box3Helper
 Visualizes a `Box3` boundary.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const box3 = new THREE.Box3().setFromObject(mesh);
 const box3Helper = new THREE.Box3Helper(box3, 0xff0000);
 scene.add(box3Helper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <primitive object={new THREE.Box3Helper(new THREE.Box3().setFromObject(mesh), 0xff0000)} />
 ```
@@ -84,13 +92,15 @@ scene.add(box3Helper);
 ## 5. CameraHelper
 Shows a camera's frustum.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const cameraHelper = new THREE.CameraHelper(camera);
 scene.add(cameraHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <primitive object={new THREE.CameraHelper(camera)} />
 ```
@@ -101,13 +111,15 @@ scene.add(cameraHelper);
 ## 6. DirectionalLightHelper
 Displays a directional light's direction.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const lightHelper = new THREE.DirectionalLightHelper(light, 5);
 scene.add(lightHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <primitive object={new THREE.DirectionalLightHelper(light, 5)} />
 ```
@@ -118,13 +130,15 @@ scene.add(lightHelper);
 ## 7. GridHelper
 Generates a grid for reference.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const gridHelper = new THREE.GridHelper(10, 10);
 scene.add(gridHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <gridHelper args={[10, 10]} />
 ```
@@ -135,13 +149,15 @@ scene.add(gridHelper);
 ## 8. PolarGridHelper
 Creates a radial grid.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const polarGridHelper = new THREE.PolarGridHelper(10, 10);
 scene.add(polarGridHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <polarGridHelper args={[10, 10]} />
 ```
@@ -151,13 +167,15 @@ scene.add(polarGridHelper);
 ## 9. HemisphereLightHelper
 Visualizes a hemisphere light's influence.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const hemiLightHelper = new THREE.HemisphereLightHelper(hemisphereLight, 5);
 scene.add(hemiLightHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <primitive object={new THREE.HemisphereLightHelper(hemisphereLight, 5)} />
 ```
@@ -168,13 +186,15 @@ scene.add(hemiLightHelper);
 ## 10. PlaneHelper
 Displays a plane.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const planeHelper = new THREE.PlaneHelper(plane, 5, 0xff0000);
 scene.add(planeHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <primitive object={new THREE.PlaneHelper(plane, 5, 0xff0000)} />
 ```
@@ -185,13 +205,15 @@ scene.add(planeHelper);
 ## 11. PointLightHelper
 Shows a point light's position.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const pointLightHelper = new THREE.PointLightHelper(pointLight, 1);
 scene.add(pointLightHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <primitive object={new THREE.PointLightHelper(pointLight, 1)} />
 ```
@@ -202,13 +224,15 @@ scene.add(pointLightHelper);
 ## 12. SkeletonHelper
 Displays a skeleton for skinned meshes.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const skeletonHelper = new THREE.SkeletonHelper(skinnedMesh);
 scene.add(skeletonHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <primitive object={new THREE.SkeletonHelper(skinnedMesh)} />
 ```
@@ -219,20 +243,22 @@ scene.add(skeletonHelper);
 ## 13. SpotLightHelper
 Visualizes a spotlight's effect.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const spotLightHelper = new THREE.SpotLightHelper(spotLight);
 scene.add(spotLightHelper);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <primitive object={new THREE.SpotLightHelper(spotLight)} />
 ```
 
 <SpotLightHelper />
 
-## Summary
+**Summary**
 - Helpers assist in debugging and visualizing objects, lights, and cameras.
 - They are useful for adjusting object positioning and understanding scene structure.
 - React-Three-Fiber uses `primitive` to integrate Three.js helpers.

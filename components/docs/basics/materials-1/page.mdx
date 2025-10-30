@@ -5,7 +5,8 @@ import { Basic, LineBasic, LineDashed, Standard, Depth, Distance, Lambert, Matca
 ## 1. MeshBasicMaterial
 A basic material without lighting effects.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -13,7 +14,8 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function MeshBasicMaterial() {
   return (
@@ -31,7 +33,8 @@ function MeshBasicMaterial() {
 ## 2. LineBasicMaterial
 Creates a simple colored line material.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.LineBasicMaterial({ color: 0xff0000 });
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -39,7 +42,8 @@ const line = new THREE.Line(geometry, material);
 scene.add(line);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function LineBasicMaterial() {
   return (
@@ -57,7 +61,8 @@ function LineBasicMaterial() {
 ## 3. LineDashedMaterial
 Creates a dashed line effect.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.LineDashedMaterial({ color: 0x00ff00, dashSize: 0.2, gapSize: 0.1 });
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -66,7 +71,8 @@ line.computeLineDistances();
 scene.add(line);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function LineDashedMaterial() {
   const geometry = useMemo(() => {
@@ -132,7 +138,8 @@ function LineDashedMaterial() {
 ## 4. MeshStandardMaterial
 A physically-based material affected by lighting.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.MeshStandardMaterial({ color: 0xffa500 });
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -140,7 +147,8 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function MeshStandardMaterial() {
   return (
@@ -158,7 +166,8 @@ function MeshStandardMaterial() {
 ## 5. MeshDepthMaterial
 Renders depth values to create effects like fog and shadows.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.MeshDepthMaterial();
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -166,7 +175,8 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function MeshDepthMaterial() {
   return (
@@ -184,7 +194,8 @@ function MeshDepthMaterial() {
 ## 6. MeshDistanceMaterial
 Useful for shadow calculations and custom effects.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.MeshDistanceMaterial();
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -192,7 +203,7 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
 ```jsx
 function MeshDistanceMaterial() {
   return (
@@ -210,7 +221,8 @@ function MeshDistanceMaterial() {
 ## 7. MeshLambertMaterial
 A non-shiny material affected by lights.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.MeshLambertMaterial({ color: 0x44aa88 });
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -218,7 +230,8 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function MeshLambertMaterial() {
   return (
@@ -238,7 +251,8 @@ function MeshLambertMaterial() {
 ## 8. MeshMatcapMaterial
 Uses a matcap texture for a unique shading effect.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const textureLoader = new THREE.TextureLoader();
 const matcap = textureLoader.load('path/to/matcap.png');
@@ -248,7 +262,8 @@ const torus = new THREE.Mesh(geometry, material);
 scene.add(torus);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
@@ -270,7 +285,8 @@ function MeshMatcapMaterial() {
 ## 9. MeshNormalMaterial
 Displays colors based on surface normals.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.MeshNormalMaterial();
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -278,7 +294,8 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function MeshNormalMaterial() {
   return (
@@ -296,7 +313,8 @@ function MeshNormalMaterial() {
 ## 10. MeshPhongMaterial
 Shiny material with specular highlights.
 
-###### Three.js Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const material = new THREE.MeshPhongMaterial({ color: 0xff0000, shininess: 100 });
 const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
@@ -304,7 +322,8 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 ```
 
-###### React-Three-Fiber Example
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 function MeshPhongMaterial() {
   return (
