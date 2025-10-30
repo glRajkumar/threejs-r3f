@@ -57,8 +57,9 @@ function DistanceMesh() {
 
 export function Distance() {
   return (
-    <Wrapper divId="distance">
-      <DistanceMesh />
-    </Wrapper>
+    <div></div>
+    // <Wrapper divId="distance">
+    //   <DistanceMesh />
+    // </Wrapper>
   )
 }

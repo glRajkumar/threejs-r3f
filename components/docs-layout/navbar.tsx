@@ -6,7 +6,7 @@ type props = {
 
 function DocsNavbar({ title }: props) {
   return (
-    <nav className="flex md:hidden items-center gap-2 sticky top-0 -mt-4 -mx-6 p-4 bg-white shadow-sm">
+    <nav className="flex md:hidden items-center gap-2 sticky top-0 -mt-6 -mx-6 p-4 bg-white shadow-sm z-1">
       <SidebarTrigger className="border" />
       <p className="my-0! text-sm font-bold">
         {title}
