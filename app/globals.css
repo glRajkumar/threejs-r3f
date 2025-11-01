@@ -182,7 +182,6 @@
   }
 }
 
-
 @layer components {
 
   .df,
@@ -238,12 +237,4 @@
 
 .lil-gui option {
   @apply bg-neutral-600;
-}
-
-#toc-content {
-  @apply hidden md:flex;
-}
-
-#toc-content.open {
-  @apply flex;
 }

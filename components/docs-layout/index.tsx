@@ -17,7 +17,7 @@ function DocsLayout({ children, title, className, ...rest }: props) {
         {...rest}
       />
 
-      <main className={cn("flex-1 p-6 md:p-8 grid md:grid-cols-[1fr_auto] gap-4 relative isolate", className)}>
+      <main className={cn("flex-1 grid md:grid-cols-[1fr_auto] gap-4 relative isolate", className)}>
         <DocNavbar title={title} />
 
         {children}

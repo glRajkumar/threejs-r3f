@@ -4,7 +4,7 @@ Three.js materials support various **texture maps** that control different visua
 
 ---
 
-### 1. `map`
+## 1. map
 * The color map. Defines the base color (diffuse) of the material. 
 * May optionally include an alpha channel, typically combined with `.transparent` or `.alphaTest`.
 
@@ -30,7 +30,7 @@ const map = useLoader("/textures/wood/color.jpg")
 
 ---
 
-### 2. `alphaMap`
+## 2. alphaMap
 
 * The alpha map is a grayscale texture that controls the opacity across the surface (black: fully transparent white: fully opaque)
 * Controls transparency per pixel using a grayscale texture.
@@ -38,7 +38,7 @@ const map = useLoader("/textures/wood/color.jpg")
 
 ---
 
-### 3. `aoMap` (Ambient Occlusion Map)
+## 3. aoMap (Ambient Occlusion Map)
 
 * The red channel of this texture is used as the ambient occlusion map.
 * Simulates self-shadowing in corners and crevices. Enhances realism with baked ambient shadows.
@@ -65,7 +65,7 @@ useEffect(() => {
 
 ---
 
-### 4. `bumpMap`
+## 4. bumpMap
 
 * The black and white values map to the perceived depth in relation to the lights. Bump doesn't actually affect the geometry of the object, only the lighting.
 * Simulates height changes without affecting real geometry.
@@ -73,7 +73,7 @@ useEffect(() => {
 
 ---
 
-### 5. `displacementMap`
+## 5. displacementMap
 
 * The displacement map affects the position of the mesh's vertices. Unlike other maps which only affect the light and shade of the material the displaced vertices can cast shadows, block other objects, and otherwise act as real geometry. The displacement texture is an image where the value of each pixel (white being the highest) is mapped against, and repositions, the vertices of the mesh.
 * Displaces vertices based on texture data.
@@ -81,7 +81,7 @@ useEffect(() => {
 
 ---
 
-## 6. `emissiveMap`
+## 6. emissiveMap
 
 * Controls light emitted by the surface, useful for glowing effects.
 * Works With: `emissive` property. If you have an emissive map, be sure to set the emissive color to something other than black.
@@ -97,35 +97,35 @@ material.emissive = new THREE.Color(0xffffff);
 
 ---
 
-### 7. `envMap` (Environment Map)
+## 7. envMap (Environment Map)
 
 * Adds reflection/refraction using a cube or equirectangular texture.
 * Used In: Reflective/metallic materials.
 
 ---
 
-## 8. `lightMap`
+## 8. lightMap
 
 * Adds baked lighting information, simulating global illumination.
 * Requires a second set of UVs (`uv2` coordinates.)
 
 ---
 
-### 9. `metalnessMap`
+## 9. metalnessMap
 
 * The blue channel of this texture is used to alter the metalness of the material.
 * Defines metallic areas (0 = non-metal, 1 = full metal).
 
 ---
 
-### 10. `normalMap`
+## 10. normalMap
 
 * The RGB values affect the surface normal for each pixel fragment and change the way the color is lit. Normal maps do not change the actual shape of the surface, only the lighting. In case the material has a normal map authored using the left handed convention, the y component of normalScale should be negated to compensate for the different handedness.
 * Adds surface details (bumps, scratches) without changing geometry. Reacts to light for a more detailed look.
 
 ---
 
-### 11. `roughnessMap`
+## 11. roughnessMap
 
 * The green channel of this texture is used to alter the roughness of the material.
 * Controls how rough the surface is (0 = smooth, 1 = rough).
@@ -133,7 +133,7 @@ material.emissive = new THREE.Color(0xffffff);
 
 ---
 
-## 12. `specularMap`
+## 12. specularMap
 
 * The specular map value affects both how much the specular surface highlight contributes and how much of the environment map affects the surface.
 * Defines the intensity of specular highlights per pixel.
@@ -141,12 +141,12 @@ material.emissive = new THREE.Color(0xffffff);
 ---
 
 
-## Notes
+**Notes**
 
 * Textures must be loaded using `THREE.TextureLoader`, `THREE.CubeTextureLoader`, or Drei's `useTexture`.
 * Use power-of-two texture sizes for best performance.
 
-###### React Three Fiber Tip:
+**React Three Fiber Tip:**
 
 You can load multiple textures in one go using `useTexture` from `@react-three/drei`:
 

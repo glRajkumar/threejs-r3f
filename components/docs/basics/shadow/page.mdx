@@ -7,14 +7,17 @@ Shadows in Three.js and React-Three-Fiber enhance realism by simulating how ligh
 ## Enabling Shadows in Three.js
 
 1. Enable shadows in the renderer:
+
 ```javascript
 renderer.shadowMap.enabled = true;
 ```
+
 2. Set `castShadow` to `true` on the light.
 3. Set `castShadow` to `true` on objects that should cast shadows.
 4. Set `receiveShadow` to `true` on objects that should receive shadows.
 
-###### Example
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const cube = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial());
 cube.castShadow = true;
@@ -27,7 +30,8 @@ scene.add(cube);
 
 The `LightShadow` class is the base for all shadow types in Three.js. It is not used directly but inherited by other shadow types.
 
-###### Example in Three.js
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.castShadow = true;
@@ -41,14 +45,16 @@ console.log(light.shadow); // Instance of LightShadow
 
 Shadows from a `PointLight` radiate in all directions.
 
-###### Example in Three.js
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const light = new THREE.PointLight(0xffffff, 1, 100);
 light.castShadow = true;
 scene.add(light);
 ```
 
-###### Example in React-Three-Fiber
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <Canvas shadows>
   <pointLight castShadow position={[2, 5, 2]} intensity={1} />
@@ -62,7 +68,8 @@ scene.add(light);
 
 Shadows from a `DirectionalLight` mimic sunlight and create parallel shadow effects.
 
-###### Example in Three.js
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(5, 10, 5);
@@ -70,7 +77,8 @@ light.castShadow = true;
 scene.add(light);
 ```
 
-###### Example in React-Three-Fiber
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <Canvas shadows>
   <directionalLight castShadow position={[5, 10, 5]} intensity={1} />
@@ -84,7 +92,8 @@ scene.add(light);
 
 Shadows from a `SpotLight` create a focused, conical effect.
 
-###### Example in Three.js
+<p className="mb-0">Three.js Example</p>
+
 ```javascript
 const light = new THREE.SpotLight(0xffffff, 1);
 light.position.set(5, 10, 5);
@@ -92,7 +101,8 @@ light.castShadow = true;
 scene.add(light);
 ```
 
-###### Example in React-Three-Fiber
+<p className="mb-0">React-Three-Fiber Example</p>
+
 ```jsx
 <Canvas shadows>
   <spotLight castShadow position={[5, 10, 5]} intensity={1} />
