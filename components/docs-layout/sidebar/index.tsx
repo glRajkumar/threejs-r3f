@@ -7,12 +7,14 @@ import type { appProps } from "../types";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarRail,
 } from "@/components/ui/sidebar";
 
 import MenuItem from "./menu";
+import Footer from "../footer";
 
 function DocsSidebar({ slugs, root, title }: appProps) {
   const pathname = usePathname()
@@ -39,6 +41,10 @@ function DocsSidebar({ slugs, root, title }: appProps) {
       </SidebarContent>
 
       <SidebarRail />
+
+      <SidebarFooter className="pb-4 border-t">
+        <Footer />
+      </SidebarFooter>
     </Sidebar>
   )
 }
