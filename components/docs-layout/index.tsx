@@ -9,16 +9,13 @@ type props = {
   className?: string
 } & readOnlychild & appProps
 
-function DocsLayout({ children, title, className, ...rest }: props) {
+function DocsLayout({ children, className, ...rest }: props) {
   return (
     <SidebarProvider>
-      <AppSidebar
-        title={title}
-        {...rest}
-      />
+      <AppSidebar {...rest} />
 
       <main className={cn("flex-1 relative isolate", className)}>
-        <DocNavbar title={title} />
+        <DocNavbar />
 
         {children}
       </main>
