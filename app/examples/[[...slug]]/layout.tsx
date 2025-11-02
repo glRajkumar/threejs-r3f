@@ -5,10 +5,9 @@ import DocsLayout from "@/components/docs-layout";
 function RootLayout({ children }: readOnlychild) {
   return (
     <DocsLayout
-      title="Examplse"
       root="examples"
       slugs={slugs}
-      className="not-prose"
+      className="max-w-full min-w-0"
     >
       {children}
     </DocsLayout>

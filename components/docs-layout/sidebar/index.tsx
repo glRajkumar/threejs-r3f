@@ -13,18 +13,23 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
+import PageSwitcher from "./page-switcher";
 import MenuItem from "./menu";
 import Footer from "../footer";
 
-function DocsSidebar({ slugs, root, title }: appProps) {
+function DocsSidebar({ slugs, root }: appProps) {
   const pathname = usePathname()
 
   return (
     <Sidebar className="border-r">
-      <SidebarHeader>
+      <SidebarHeader className="mb-2 border-b">
         <SidebarMenu className="pl-2 pt-2 text-sm font-bold">
-          {title}
+          Threejs + R3F
         </SidebarMenu>
+
+        <PageSwitcher
+          root={root}
+        />
       </SidebarHeader>
 
       <SidebarContent className="gap-0">

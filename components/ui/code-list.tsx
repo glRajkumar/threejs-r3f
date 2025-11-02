@@ -34,6 +34,7 @@ async function CodeList({ files }: props) {
             <CodeBlock
               fileName={file.fileName}
               content={file.content}
+              className="[&_pre]:overflow-x-auto"
             />
           </TabsContent>
         ))

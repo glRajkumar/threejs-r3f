@@ -19,7 +19,7 @@ function View({ code, preview }: props) {
   const [isCodeView, setIsCodeView] = useState(false)
 
   return (
-    <>
+    <div className="p-6 pt-8 md:p-8">
       {
         isCodeView
           ? code
@@ -40,7 +40,7 @@ function View({ code, preview }: props) {
           View {isCodeView ? "Preview" : "Code"}
         </TooltipContent>
       </Tooltip>
-    </>
+    </div>
   )
 }
 
