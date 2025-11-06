@@ -247,7 +247,7 @@
 }
 
 .canvas-wrapper > .lil-gui {
-  @apply absolute right-0 top-0 max-h-96;
+  @apply absolute right-0 top-13 max-h-96;
 }
 
 .lil-gui option {
