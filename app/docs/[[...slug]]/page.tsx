@@ -38,10 +38,7 @@ async function Page({ params }: props) {
 
       {
         toc.length > 0 &&
-        <Toc
-          list={toc}
-          slug={["docs", ...slug]}
-        />
+        <Toc list={toc} />
       }
     </>
   )

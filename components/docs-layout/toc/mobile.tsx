@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 
-import { type tocProps } from "./toc";
+import type { tocProps } from "./toc";
+
+import { removeLeadingNumber } from "./utils";
+import { cn } from "@/lib/utils";
 
 import {
   Sheet,
@@ -12,9 +15,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import List from "./list";
 
-function Mobile({ list, slug }: tocProps) {
+function Mobile({ list }: tocProps) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -28,11 +30,21 @@ function Mobile({ list, slug }: tocProps) {
           <SheetTitle>On this page</SheetTitle>
 
           <SheetDescription className="dfc pb-8">
-            <List
-              list={list}
-              slug={slug}
-              onClick={() => setOpen(false)}
-            />
+            {
+              list.map(item => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={cn("text-primary/70 hover:text-primary", {
+                    "pl-2": item.level === 2,
+                    "pl-4": item.level === 3,
+                  })}
+                  onClick={() => setOpen(false)}
+                >
+                  {removeLeadingNumber(item.title)}
+                </a>
+              ))
+            }
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
