@@ -11,7 +11,7 @@ import {
 
 export function ArrowHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-arrow">
       <ArrowHelperMesh />
     </Wrapper>
   )
@@ -19,7 +19,7 @@ export function ArrowHelper() {
 
 export function AxesHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-axes">
       <Mesh><boxGeometry /></Mesh>
       <axesHelper args={[5]} />
     </Wrapper>
@@ -28,7 +28,7 @@ export function AxesHelper() {
 
 export function BoxHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-box">
       <BoxHelperMesh />
     </Wrapper>
   )
@@ -36,7 +36,7 @@ export function BoxHelper() {
 
 export function Box3Helper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-box3">
       <Box3HelperMesh />
     </Wrapper>
   )
@@ -44,7 +44,7 @@ export function Box3Helper() {
 
 export function CameraHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-camera">
       <CameraHelperMesh />
     </Wrapper>
   )
@@ -52,7 +52,7 @@ export function CameraHelper() {
 
 export function DirectionalLightHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-directional-light">
       <DirectionalLightHelperMesh />
     </Wrapper>
   )
@@ -60,7 +60,7 @@ export function DirectionalLightHelper() {
 
 export function GridHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-grid">
       <Mesh><boxGeometry /></Mesh>
       <gridHelper args={[10, 10]} rotation={[1, 0, 0]} />
     </Wrapper>
@@ -69,7 +69,7 @@ export function GridHelper() {
 
 export function PolarGridHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-polar-grid">
       <Mesh><boxGeometry /></Mesh>
       <polarGridHelper args={[10, 10]} rotation={[1, 0, 0]} />
     </Wrapper>
@@ -78,7 +78,7 @@ export function PolarGridHelper() {
 
 export function HemisphereLightHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-hemisphere-light">
       <HemisphereLightHelperMesh />
     </Wrapper>
   )
@@ -86,7 +86,7 @@ export function HemisphereLightHelper() {
 
 export function PlaneHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-plane">
       <PlaneHelperMesh />
     </Wrapper>
   )
@@ -94,7 +94,7 @@ export function PlaneHelper() {
 
 export function PointLightHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-point-light">
       <PointLightHelperMesh />
     </Wrapper>
   )
@@ -102,7 +102,7 @@ export function PointLightHelper() {
 
 export function SkeletonHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-skeleton">
       <SkeletonHelperMesh />
     </Wrapper>
   )
@@ -110,7 +110,7 @@ export function SkeletonHelper() {
 
 export function SpotLightHelper() {
   return (
-    <Wrapper>
+    <Wrapper divId="helper-spot-light">
       <SpotLightHelperMesh />
     </Wrapper>
   )

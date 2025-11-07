@@ -23,7 +23,7 @@ function Text({ img, position }: props) {
 
 export function Boxes() {
   return (
-    <Wrapper>
+    <Wrapper divId="texture">
       <Text
         img="/images/textures/brick/bump.jpg"
         position={[-4, 0, 0]}

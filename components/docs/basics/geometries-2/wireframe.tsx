@@ -6,7 +6,7 @@ import { Wrapper, Mesh } from "../wrapper"
 
 export function Wireframe() {
   return (
-    <Wrapper>
+    <Wrapper divId='wireframe'>
       <Mesh useDefaultMaterial={false}>
         <lineSegments>
           <wireframeGeometry args={[new THREE.BoxGeometry(1, 1, 1)]} />
