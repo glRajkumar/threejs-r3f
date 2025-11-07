@@ -36,10 +36,12 @@ Creates a sphere.
 SphereGeometry(radius?: 1, widthSegments?: 3 (min - 32), heightSegments?: 16 (min - 2), phiStart?: 0, phiLength?: Math.PI * 2, thetaStart?: 0, thetaLength?: Math.PI)
 ```
 
-phiStart — specify horizontal starting angle. 
-phiLength — specify horizontal sweep angle size.
-thetaStart — specify vertical starting angle.
-thetaLength — specify vertical sweep angle size.
+| Property | Description |
+| --- | --- |
+| phiStart | specify horizontal starting angle |
+| phiLength | specify horizontal sweep angle size |
+| thetaStart | specify vertical starting angle |
+| thetaLength | specify vertical sweep angle size |
 
 <p className="mb-0">Three.js Example</p>
 
@@ -158,9 +160,11 @@ Creates a torus (ring or donut shape).
 TorusGeometry(radius?: 1, tube?: 0.4, radialSegments?: 12, tubularSegments?: 48, arc?: Math.PI * 2)
 ```
 
-radius - Radius of the torus, from the center of the torus to the center of the tube.
-tube — Radius of the tube. Must be smaller than radius.
-arc — Central angle.
+| Property | Description |
+| --- | --- |
+| radius | Radius of the torus, from the center of the torus to the center of the tube |
+| tube | Radius of the tube. Must be smaller than radius |
+| arc | Central angle |
 
 <p className="mb-0">Three.js Example</p>
 
@@ -185,8 +189,10 @@ Creates a torus knot.
 TorusKnotGeometry(radius?: 1, tube?: 0.4, tubularSegments?: 64, radialSegments?: 8, p?: 2, q?: 3)
 ```
 
-p — This value determines, how many times the geometry winds around its axis of rotational symmetry.
-q — This value determines, how many times the geometry winds around a circle in the interior of the torus.
+| Property | Description |
+| --- | --- |
+| p | This value determines, how many times the geometry winds around its axis of rotational symmetry |
+| q | This value determines, how many times the geometry winds around a circle in the interior of the torus |
 
 <p className="mb-0">Three.js Example</p>
 
@@ -211,7 +217,9 @@ Creates a dodecahedron (12-faced polyhedron).
 DodecahedronGeometry(radius?: 1, detail?: 0)
 ```
 
-detail — Setting this to a value greater than 0 adds vertices making it no longer a dodecahedron.
+| Property | Description |
+| --- | --- |
+| detail | Setting this to a value greater than 0 adds vertices making it no longer a dodecahedron |
 
 <p className="mb-0">Three.js Example</p>
 
@@ -236,7 +244,9 @@ Creates an icosahedron (20-faced polyhedron).
 IcosahedronGeometry(radius?: 1, detail?: 0)
 ```
 
-detail — Setting this to a value greater than 0 adds more vertices making it no longer an icosahedron. When detail is greater than 1, it's effectively a sphere.
+| Property | Description |
+| --- | --- |
+| detail | Setting this to a value greater than 0 adds more vertices making it no longer an icosahedron. When detail is greater than 1, it's effectively a sphere |
 
 <p className="mb-0">Three.js Example</p>
 

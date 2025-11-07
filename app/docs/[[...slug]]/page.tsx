@@ -32,7 +32,7 @@ async function Page({ params }: props) {
 
   return (
     <>
-      <article className="p-6 md:p-8 max-w-none min-w-0 prose prose-sm prose-th:py-1 prose-th:px-2 prose-td:px-2 prose-table:border dark:bg-[#141414]">
+      <article className="p-6 md:p-8 max-w-none min-w-0 prose prose-sm prose-th:py-1 prose-th:px-2 prose-td:px-2 prose-table:border prose-h2:mb-1 dark:bg-[#141414]">
         <MDXComponent />
       </article>
 

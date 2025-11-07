@@ -70,8 +70,8 @@ export function Wrapper({ children, divId, ...rest }: readOnlychild & CanvasProp
 
       {
         isActive ?
-          <div className="flex-1">
-            <Canvas {...rest} key={key}>
+          <div className="flex-1" key={`${divId}-${key}`}>
+            <Canvas {...rest}>
               {children}
 
               <OrbitControls enableDamping />

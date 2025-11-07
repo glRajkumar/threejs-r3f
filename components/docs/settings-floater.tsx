@@ -34,7 +34,7 @@ function SettingsFloater() {
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="w-68 px-0 pt-2 pb-4" align="end">
+      <PopoverContent onOpenAutoFocus={e => e.preventDefault()} className="w-68 px-0 pt-2 pb-4" align="end">
         <div className="pb-2 px-3 border-b text-base font-medium">Settings</div>
 
         <div className="df p-4">
