@@ -54,7 +54,7 @@ export function Wrapper({ children, divId, ...rest }: readOnlychild & CanvasProp
   }
 
   return (
-    <div className="dfc canvas-wrapper h-96 gap-0 border mt-4 rounded-lg shadow-sm relative" id={divId}>
+    <div className="dfc canvas-wrapper h-96 gap-0 border mt-4 rounded-lg shadow-sm relative isolate" id={divId}>
       <div className="df justify-between px-4 py-2 border-b">
         <p className="m-0! capitalize">{divId?.replaceAll("-", " ")}</p>
 
@@ -62,9 +62,10 @@ export function Wrapper({ children, divId, ...rest }: readOnlychild & CanvasProp
           size="icon"
           variant="secondary"
           onClick={reload}
-          className="cursor-pointer hover:bg-border group"
+          className="size-6 p-0 cursor-pointer hover:bg-border group"
+          title="Refresh"
         >
-          <RefreshCcw className="group-hover:rotate-180 transition-transform" />
+          <RefreshCcw className="size-3 group-hover:rotate-180 transition-transform" />
         </Button>
       </div>
 
