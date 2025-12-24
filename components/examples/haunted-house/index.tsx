@@ -29,8 +29,8 @@ function HauntedHouse() {
         gl={{ antialias: true }}
         camera={{ position: [0, 0, 20], fov: 75 }}
       >
-        <OrbitControls enableDamping />
         <Scene />
+        <OrbitControls enableDamping />
       </Canvas>
     </div>
   )

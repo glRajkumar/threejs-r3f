@@ -9,7 +9,7 @@ function Scene() {
   const particleTexture = useTexture('/images/textures/particles/1.png')
   const pointsRef = useRef<Points | null>(null)
 
-  const count = 50000
+  const count = 5000
 
   const { positions, colors } = useMemo(() => {
     const positions = new Float32Array(count * 3)
@@ -71,8 +71,8 @@ function Particles() {
         gl={{ antialias: true }}
         camera={{ position: [0, 0, 20], fov: 75 }}
       >
-        <OrbitControls enableDamping />
         <Scene />
+        <OrbitControls enableDamping />
       </Canvas>
     </div>
   )

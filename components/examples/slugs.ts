@@ -9,6 +9,10 @@ export const slugs: Slug[] = [
     title: "Particles",
     href: "particles",
   },
+  {
+    title: "Galaxy",
+    href: "galaxy",
+  },
 ]
 
 export const staticSlugs = getSlugsArr(slugs)
