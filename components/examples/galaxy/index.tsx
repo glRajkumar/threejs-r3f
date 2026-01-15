@@ -19,9 +19,7 @@ function Scene() {
     outsideColor: "#1b3984",
   })
 
-  const geometry = useMemo(() => {
-    const geometry = new THREE.BufferGeometry()
-
+  const { positions, colors } = useMemo(() => {
     const positions = new Float32Array(params.count * 3)
     const colors = new Float32Array(params.count * 3)
 
@@ -42,11 +40,9 @@ function Scene() {
         params.randomness *
         radius
 
-      positions[i3] =
-        Math.cos(branchAngle + spinAngle) * radius + random()
+      positions[i3] = Math.cos(branchAngle + spinAngle) * radius + random()
       positions[i3 + 1] = random()
-      positions[i3 + 2] =
-        Math.sin(branchAngle + spinAngle) * radius + random()
+      positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + random()
 
       const mixedColor = colorInside.clone()
       mixedColor.lerp(colorOutside, radius / params.radius)
@@ -56,16 +52,13 @@ function Scene() {
       colors[i3 + 2] = mixedColor.b
     }
 
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3))
-    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3))
-
-    return geometry
+    return { positions, colors }
   }, [params])
 
   useEffect(() => {
     const gui = new GUI()
 
-    gui.add(params, "count", 100, 1_000_000, 100)
+    gui.add(params, "count", 100, 100000, 100)
       .onFinishChange((v: any) => setParams((p) => ({ ...p, count: v })))
 
     gui.add(params, "size", 0.001, 0.1, 0.001)
@@ -96,7 +89,18 @@ function Scene() {
   }, [])
 
   return (
-    <points geometry={geometry}>
+    <points>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          args={[positions, 3]}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          args={[colors, 3]}
+        />
+      </bufferGeometry>
+
       <pointsMaterial
         vertexColors
         sizeAttenuation
