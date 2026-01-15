@@ -13,6 +13,10 @@ export const slugs: Slug[] = [
     title: "Galaxy",
     href: "galaxy",
   },
+  {
+    title: "Ray Caster",
+    href: "raycaster",
+  },
 ]
 
 export const staticSlugs = getSlugsArr(slugs)
